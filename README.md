@@ -21,52 +21,58 @@ Understanding the registers system for the first time is not trivial, knowing th
 **Register mapping according to the English Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
 
-The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused.
+The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a pin only used to push registers at address ranges not available with the M64282FP sensor (the pin is not connected). It must be always HIGH, except for last two addresses.
 
 **Address 000, TADD HIGH**
-**Register Z1-Z0:** used to correct the output voltage (VOUT) so that it matches Vref given by register V in dark conditions. In total darkness, VOUT however shifts with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0.
+**Register Z1-Z0:** used to set the output voltage of the sensor (VOUT) so that it matches Vref given by register V in dark conditions (other said, it gives the lowest reference voltage). In total darkness, VOUT however shifts a bit with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0.
 **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to register Vref given by register V. MSB gives the polarity of the applied voltage.
-The registers at this address have exactly the same effect with the M64282FP sensor.
+**The registers at this address have exactly the same effect with the M64282FP sensor.**
 
 **Address 001, TADD HIGH**
-**Registers N, VH:** enable image enhancement (N) and choose which convolution kernel to apply among 4 (VH0, VH1). Convolution kernels can also be forced via P, M and X registers. The formula to force custom kernels is not trivial.
+**Registers N, VH:** enable image enhancement (N) and choose which convolution kernel to apply among 4 pre-calculated ones (VH0, VH1). Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all.
 **Registers G:** output gain, see tables in datasheet.
-The registers at this address have exactly the same effect with the M64282FP sensor.
+_**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
 **Address 010 and 011, TADD HIGH**
-**Register C:** Exposure time in 65535 increments of 16 µs. Maximal exposure is 1048 ms if clock is set to 500 Mhz. Downclocking is possible to increase exposure time but overcloking gives image with intense artifacts (top of the image becomes black). Without image enhancement, 0x0010 is the minimal exposure recommended. With image enhancement, 0x0020 is the minimal exposure recommended (0x0030 for the M64283FP). Using values below that creates images with black parts.
-The registers at this address have exactly the same effect with the M64282FP sensor.
+**Register C:** Exposure time in 65535 increments of 16 µs. Maximal exposure is 1048 ms if clock is set to 500 Mhz. Downclocking is possible to increase exposure time but overcloking gives image with intense artifacts (top of the image becomes black). Without image enhancement, 0x0010 is the minimal exposure recommended. With image enhancement, 0x0020 is the minimal exposure recommended (0x0030 for the M64283FP). Using values below these creates images with very strong artifacts.
+_**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
 **Address 100, TADD HIGH**
 **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0.
-**Register CL:** Enables the auto-calibration circuit and cancels the voltage shift with exposure time. Is used in conjonction with OB that outputs a line of dark pixels. 0 is active.
+**Register CL:** Enables the auto-calibration circuit and cancels the voltage shift of VOUT with exposure time. Is used in conjonction with OB that outputs a line of dark pixels for reference at the very top of the image. 0 is active.
 **Registers P3-P0** custom convolution kernels. 0x0001 by default.
-The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.
+_**The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.**_
 
 **Address 101, TADD HIGH**
 **Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection).
 **Register MV4:** plus or minus bias for projection mode.
 **Register OB:** Enable to output optical black level (electrical signal of physically masked pixels) as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
 **Register M3-M0:** custom convolution kernels. 0x0000 by default.
+_**these registers differ notably from M64282FP sensor.**_
+
 
 **Address 110, TADD HIGH**
 **Register MV3-MV0:** voltage bias for the projection mode, 16 steps of 8 mV.
 **Register X3-X0:** custom convolution kernels. 0x0001 by default.
+_**these registers differ notably from M64282FP sensor.**_
 
 **Address 111, TADD HIGH**
 **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to remove this effect is so to use register N**
 **Register I:** outputs the image in negative.
 **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0x000 is forbidden. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC.
+_**The registers at this address have similar, but not identical effect with the M64282FP sensor.**_
 
 Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0x00000000, 0x00000000, the whole image is captured. TADD must be kept HIGH by default.
 
 **Address 001, TADD LOW**
 **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (0-15).
 **Register ST7-ST4:** start address in x for random adressing mode in 4 bits (0-15).
+_**These registers do not exist in the M64282FP sensor.**_
 
 **Address 010, TADD LOW**
 **Register END7-END4:** ending address in y for random adressing mode in 4 bits (0-15).
 **Register ST7-ST4:** ending address in x for random adressing mode in 4 bits (0-15).
+_**These registers do not exist in the M64282FP sensor.**_
 
 The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
 
