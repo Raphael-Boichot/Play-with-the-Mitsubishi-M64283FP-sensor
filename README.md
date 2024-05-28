@@ -6,18 +6,22 @@ Mitsubishi created a series of CMOS sensors called “artificial retina”, with
 
 The originality (and shortcoming) of these sensors is that they produce an analog output from digital registers that are “relatively” simple to apply and allow real-time image processing with conventional transformations (edge detection, inversion, gain change, etc.). This analog output then has to be converted into a digital signal, byte by byte, to be processeds further, which represents a major bottleneck in terms of data flow rate. The Game Boy Camera deals with this shortcoming by incorporating a very fast analog-to-digital converter in its mapper but is capped to about 12 fps nevertheless.
 
-To overcome this shortcoming, the sensors in the analog range evolved towards random tile addressing (M64283FP) and lower definitiveness (M64285FP), but eventually disappeared in favor of faster, fully digital sensors. It is totally unknown now which sensor equipped with apparatus and what the production volume was, except for the Game Boy Camera.
+To overcome this shortcoming, the sensors in the analog series evolved towards random tile addressing and projection to reduce the flow rate of data to convert (M64283FP) and lower definition (M64285FP with 32x32 pixels matrix), but eventually disappeared in favor of faster, fully digital sensors. It is totally unknown now which sensor equipped with apparatus and what the production volume was, except for the Game Boy Camera.
 
-Mitsubishi sensor division was finally incorporated into Renesas in 2003. The M642XX sensor series is notorious for the disastrous translation of their datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet in Japanese is available and the translated version is at least understandable.
+Mitsubishi sensor division was finally incorporated into Renesas in 2003 and the artificial retinas eventually faded into total obscurity. The M642XX sensor series is notorious for the rushed translation of their datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet in Japanese is available and the translated version is at least barely understandable.
 
-The M64283FP was probably available for retail as it had a quite successful carreer in labs to tinker augmented vision systems, both in Japanese laboratory and in the West. 
+The M64283FP was probably available for world retail at a certain point as it had a quite successful carreer in labs to tinker augmented vision systems, both in Japanese laboratory and in the West. 
 
-This sensor appears sporadically on Japanese online auction sites for a random price and some Chinese chip dealers claim to have them, but I've never managed to get one through this channel despite endless palavering to negotiate prices and quantities. I obtained two copies of the M64283FP from a generous donor who knows someone who knows someone at Mitsubishi.
+This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have them, but I've never managed to bargain one for less than 60€ (which is a no go for me). I obtained two copies of the M64283FP in the summer 2023 from a generous donor who knew someone who knows someone at Mitsubishi, knowing that these sensors will have a good second home with me.
 
 ## Register setting
 
+Understanding the registers system for the first time is not trivial, knowing the sketchy documentation available. Despite everything, through trial and error, datalogging and a bit of educated guess (plus a lot of time), I think I overall understand how to drive them now.
+
 **Register mapping according to the English Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
+
+The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused.
 
 **Address 000, TADD HIGH**
 **Register Z1-Z0:** used to correct the output voltage (VOUT) so that it matches Vref given by register V in dark conditions. In total darkness, VOUT however shifts with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0.
