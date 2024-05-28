@@ -118,6 +118,18 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 **M64282FP sensor (left) and M64283FP sensor (right) on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
 
+The M64282FP is yellowish while the M64283FP is more grayish.
+
+**Image taken without left) and with (right) image enhancement at 50% intensity**
+![](/Pictures%20and%20datasheets/Image_enhancement.png)
+
+**Image taken strip by strip with random access to the sensor surface**
+![](/Pictures%20and%20datasheets/Random_access.png)
+
+**The setup used**
+![](/Pictures%20and%20datasheets/Setup.png)
+
+
 ## Acknowledgments
 
 - [Andreas Hahn](https://github.com/HerrZatacke) for the [M64283FP/82FP-compatible PCB](https://github.com/HerrZatacke/M64283FP-Camera-PCB). 
