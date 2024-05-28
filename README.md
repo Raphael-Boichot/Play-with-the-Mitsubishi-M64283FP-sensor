@@ -8,9 +8,9 @@ The originality (and shortcoming) of these sensors is that they produce an analo
 
 To overcome this shortcoming, the sensors in the analog range evolved towards random tile addressing (M64283FP) and lower definitiveness (M64285FP), but eventually disappeared in favor of faster, fully digital sensors. It is totally unknown now which sensor equipped with apparatus and what the production volume was, except for the Game Boy Camera.
 
-Mitsubishi's sensor division was finally incorporated into Renesas in 2003. The M642XX sensor series is notorious for the disastrous translation of these datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet is available and the translated version is at least understandable.
+Mitsubishi sensor division was finally incorporated into Renesas in 2003. The M642XX sensor series is notorious for the disastrous translation of their datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet in Japanese is available and the translated version is at least understandable.
 
-The M64283FP was probably available for retail as it had a quite successful carrer in labs to make augmented vision equipment, both in Japanese laboratory and in the West. 
+The M64283FP was probably available for retail as it had a quite successful carreer in labs to tinker augmented vision systems, both in Japanese laboratory and in the West. 
 
 This sensor appears sporadically on Japanese online auction sites for a random price and some Chinese chip dealers claim to have them, but I've never managed to get one through this channel despite endless palavering to negotiate prices and quantities. I obtained two copies of the M64283FP from a generous donor who knows someone who knows someone at Mitsubishi.
 
@@ -20,7 +20,7 @@ This sensor appears sporadically on Japanese online auction sites for a random p
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
 
 **Address 000, TADD HIGH**
-**Register Z1-Z0:** used to correct the output voltage (VOUT) so that it matches Vref given by register V in dark conditions. In total darkness, VOUT anyway shifts with exposure time compared to Vref and can be corrected other registers (see next). Default values recommended: Z1 = 1 and Z0 = 0.
+**Register Z1-Z0:** used to correct the output voltage (VOUT) so that it matches Vref given by register V in dark conditions. In total darkness, VOUT however shifts with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0.
 **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to register Vref given by register V. MSB gives the polarity of the applied voltage.
 The registers at this address have exactly the same effect with the M64282FP sensor.
 
@@ -34,15 +34,15 @@ The registers at this address have exactly the same effect with the M64282FP sen
 The registers at this address have exactly the same effect with the M64282FP sensor.
 
 **Address 100, TADD HIGH**
-**Registers SH, AZ** totally confusing role in the English datasheet, eluded in the Japanese datasheet. Recommended default values: SH = 0, AZ = 0.
-**Register CL:** Enable the auto-calibration circuit. Is used in conjonction with OB that outputs a line of dark pixels. 0 is active.
+**Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0.
+**Register CL:** Enables the auto-calibration circuit and cancels the voltage shift with exposure time. Is used in conjonction with OB that outputs a line of dark pixels. 0 is active.
 **Registers P3-P0** custom convolution kernels. 0x0001 by default.
 The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.
 
 **Address 101, TADD HIGH**
 **Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection).
 **Register MV4:** plus or minus bias for projection mode.
-**Register OB:** Enable to output optical black level as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
+**Register OB:** Enable to output optical black level (electrical signal of physically masked pixels) as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
 **Register M3-M0:** custom convolution kernels. 0x0000 by default.
 
 **Address 110, TADD HIGH**
@@ -50,7 +50,7 @@ The registers P3-P0 at this address have exactly the same effect with the M64282
 **Register X3-X0:** custom convolution kernels. 0x0001 by default.
 
 **Address 111, TADD HIGH**
-**Register E3-E0:** intensity of edge enhancement, from 0 to 87.5%. **With the same registers, M64282FP goes from 50% to 500%. Only way to remove this effect is so to use register N**
+**Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to remove this effect is so to use register N**
 **Register I:** outputs the image in negative.
 **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0x000 is forbidden. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC.
 
@@ -64,19 +64,32 @@ Next registers are pushed only if TADD is set LOW when activating the LOAD pin, 
 **Register END7-END4:** ending address in y for random adressing mode in 4 bits (0-15).
 **Register ST7-ST4:** ending address in x for random adressing mode in 4 bits (0-15).
 
-The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing.
+The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
 
 **Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
 
+## some notes
+
+Pushing the default Game Boy camera registers to a M64283FP is overall OK: auto-calibration is activated by default, VOUT is set to Vref in the dark (minus the drift), registers ST and END are not sent. The only noticable difference is the table of register E. While the default value in the Game Boy Camera is 0x000 (50% enhancement intensity with the M64282FP), it corresponds to 0% enhancement intensity with the M64283FP. So image appears very soft.
+
+Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts.
+
 ## The random access mode
 
-The English datasheet is totally confusing (to say the least) about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: auto-calibration and convolution kernels. And it just works.
+The English datasheet is totally confusing (to say the least) about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). And it just works.
 
 **Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
 ## Showcase
 
+The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin.
+
 **M64282FP sensor (left) and M64283FP sensor (right) on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
+
+## Acknowledgments
+
+- [Andreas Hahn](https://github.com/HerrZatacke) for the [M64283FP/82FP-compatible PCB](https://github.com/HerrZatacke/M64283FP-Camera-PCB). 
+- Razole for providing me some M64283FPs.
