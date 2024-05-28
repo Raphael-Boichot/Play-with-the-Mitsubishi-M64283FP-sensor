@@ -12,7 +12,7 @@ Mitsubishi's sensor division was finally incorporated into Renesas in 2003. The 
 
 The M64283FP was probably available for retail as it had a quite successful carrer in labs to make augmented vision equipment, both in Japanese laboratory and in the West. 
 
-ce capteur apparaît sporadiquement sur des sites d'enchère en ligne japonais pour un prix aléatoire et certains destockeurs de puce chinois declarent en posséder mais je n'ai jamais réussi à en obtenir par ce biais malgré des palabres sans fin pour négocier les prix et quantités. J'ai obtenu deux exemplaires du M64283FP par un genereux donateur qui connait quelqu'un qui connait quelqu'un chez Mitsubishi...
+This sensor appears sporadically on Japanese online auction sites for a random price and some Chinese chip dealers claim to have them, but I've never managed to get one through this channel despite endless palavering to negotiate prices and quantities. I obtained two copies of the M64283FP from a generous donor who knows someone who knows someone at Mitsubishi.
 
 ## Register setting
 
@@ -49,13 +49,31 @@ The registers P3-P0 at this address have exactly the same effect with the M64282
 **Register MV3-MV0:** voltage bias for the projection mode, 16 steps of 8 mV.
 **Register X3-X0:** custom convolution kernels. 0x0001 by default.
 
+**Address 111, TADD HIGH**
+**Register E3-E0:** intensity of edge enhancement, from 0 to 87.5%. **With the same registers, M64282FP goes from 50% to 500%. Only way to remove this effect is so to use register N**
+**Register I:** outputs the image in negative.
+**Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0x000 is forbidden. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC.
 
-**Register mapping according to the Japanese Datasheet of the M64283FP sensor**
+Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0x00000000, 0x00000000, the whole image is captured. TADD must be kept HIGH by default.
+
+**Address 001, TADD LOW**
+**Register ST7-ST4:** start address in y for random adressing mode in 4 bits (0-15).
+**Register ST7-ST4:** start address in x for random adressing mode in 4 bits (0-15).
+
+**Address 010, TADD LOW**
+**Register END7-END4:** ending address in y for random adressing mode in 4 bits (0-15).
+**Register ST7-ST4:** ending address in x for random adressing mode in 4 bits (0-15).
+
+The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing.
+
+**Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
 
 ## The random access mode
 
-**Register setting to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
+The English datasheet is totally confusing (to say the least) about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: auto-calibration and convolution kernels. And it just works.
+
+**Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
 ## Showcase
