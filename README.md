@@ -12,6 +12,8 @@ Mitsubishi's sensor division was finally incorporated into Renesas in 2003. The 
 
 The M64283FP was probably available for retail as it had a quite successful carrer in labs to make augmented vision equipment, both in Japanese laboratory and in the West. 
 
+ce capteur apparaît sporadiquement sur des sites d'enchère en ligne japonais pour un prix aléatoire et certains destockeurs de puce chinois declarent en posséder mais je n'ai jamais réussi à en obtenir par ce biais malgré des palabres sans fin pour négocier les prix et quantités. J'ai obtenu deux exemplaires du M64283FP par un genereux donateur qui connait quelqu'un qui connait quelqu'un chez Mitsubishi...
+
 ## Register setting
 
 
