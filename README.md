@@ -122,7 +122,7 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 
 The Game Boy Camera is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
 
-**Image taken without left) and with (right) image enhancement at 50% intensity**
+**Image taken without (left) and with (right) image enhancement at 50% intensity**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
 The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
