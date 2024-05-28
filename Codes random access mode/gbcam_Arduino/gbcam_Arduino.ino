@@ -14,7 +14,7 @@ int VOUT = A3;   //Analog signal from sensor, read shortly after clock is set lo
 int LED = 4;     //just for additionnal LED on D4, not essential to the protocol
 int RED = 5;     //to show access time to ADC
 int STRB = 6;    //Strobe pin, for M64283FP only (UNUSED here as it follows CLOCK but why not using it)
-int TADD = 7;    //TADD register, for M64283FP only
+int TADD = 7;    //TADD pin, for M64283FP only
 int READ = 8;    //Read image signal, goes high on rising clock
 int CLOCK = 9;   //Clock input, pulled down internally, no specification given for frequency
 int RESET = 10;  //system reset, pulled down internally, active low, sent on rising edge of clock
@@ -23,14 +23,14 @@ int SIN = 12;    //parameter input, pulled down internally
 int START = 13;  //Image sensing start, pulled down internally, has to be high before rising CLOCK
 
 //enter here the parameters to allow random access to the sensor, see documentation
-unsigned char startX_random_access = 0;  //for M64283FP only
-unsigned char startY_random_access = 8;  //for M64283FP only
-unsigned char endX_random_access = 16;   //for M64283FP only
-unsigned char endY_random_access = 12;   //for M64283FP only
+unsigned char startX_random_access = 6;  //for M64283FP only
+unsigned char startY_random_access = 0;  //for M64283FP only
+unsigned char endX_random_access = 10;   //for M64283FP only
+unsigned char endY_random_access = 16;   //for M64283FP only
 //the voltage range of VOUT is approx. (V + O) to (V + O + 2 volts) but it is not an exact science
 //targeting the mid range for autoexposure gives good results overall
-unsigned char v_min = 26;   //minimal voltage returned by the sensor in 8 bits DEC, about V+O, so 0.5V (or 26 in 8-bit on 0-5V ADC scale)
-unsigned char v_max = 180;  //maximal voltage returned by the sensor in 8 bits DEC, about V+O+2, so 2.5V (or 180 in 8-bit on 0-5V ADC scale)
+unsigned char v_min = 50;   //minimal voltage returned by the sensor in 8 bits DEC, about V+O, so 0.5V (or 26 in 8-bit on 0-5V ADC scale)
+unsigned char v_max = 150;  //maximal voltage returned by the sensor in 8 bits DEC, about V+O+2, so 2.5V (or 180 in 8-bit on 0-5V ADC scale)
 //beware if you port this code to ESP32 or Pi Pico : the voltage scale of the ADC is 0-3.3V only, it's easy to fry the ADC channel !
 unsigned char x_tiles = 16;               //for M64282FP
 unsigned char y_tiles = 16;               //for M64282FP
@@ -40,7 +40,7 @@ unsigned char cycles = 0;                 //usefull for ESP32, Pi Pico, etc. Add
 
 // typical registers of a Game Boy Camera, goes well also for the 83FP sensor when not using extra registers
 //////////////////////////{ 0bZZOOOOOO, 0bNVVGGGGG, 0bCCCCCCCC, 0bCCCCCCCC, 0bSAC_PPPP, 0bPPMOMMMM, 0bXXXXXXXX, 0bEEEEIVVV };
-unsigned char camReg[8] = { 0b10000000, 0b11100111, 0b00000100, 0b00000000, 0b00000001, 0b00000000, 0b00000001, 0b00000001 };  //registers
+unsigned char camReg[8] = { 0b10000000, 0b11100111, 0b00000100, 0b00000000, 0b00000001, 0b00000000, 0b00000001, 0b01000001 };  //registers
   /////////////////////////{ 0byyyyxxxx, 0byyyyxxxx };
   /////////////////////////{ 0bSSSSSSSS, 0bEEEEEEEE };
 unsigned char camTADD[2] = { 0b00000000, 0b00000000 };  //for M64283FP only
@@ -133,7 +133,7 @@ void loop()  //that's all folks !
   take_a_picture();
   new_exposure = auto_exposure();  // self explanatory
   push_exposure();                 //update exposure registers C2-C3
-  Serial.print("Exposure registers: ");
+  Serial.print("Exposure registers:   ");
   Serial.println(new_exposure, HEX);
 }  //end of loop
 
@@ -226,7 +226,7 @@ void camSetRegistersTADD()  //Sets the sensor 2 ADDitional registers to TADD pin
 void camSetReg(unsigned char regaddr, unsigned char regval)  // Sets one of the 8 8-bit registers in the sensor
 {
   unsigned char bitmask;
-  Serial.print("Adress:");
+  Serial.print("Address:");
   for (bitmask = 0x4; bitmask >= 0x1; bitmask >>= 1) {  // Write 3-bit address.
     digitalWrite(CLOCK, LOW);
     camDelay();
@@ -369,6 +369,7 @@ void camReadPicture()  // Take a picture, read it and send it through the serial
   }
   digitalWrite(CLOCK, LOW);
   camDelay();
-  Serial.print('Current exposure time (ms):');
+  Serial.println(" ");
+  Serial.print("Current exposure time (ms):");
   Serial.println(currentTime, DEC);
 }
