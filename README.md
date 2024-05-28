@@ -140,4 +140,4 @@ I did use here my janky prototyping board but it would be easier for you to orde
 ## Acknowledgments
 
 - [Andreas Hahn](https://github.com/HerrZatacke) for the [M64283FP/82FP-compatible PCB](https://github.com/HerrZatacke/M64283FP-Camera-PCB). 
-- Razole for providing me some M64283FPs.
+- Razole for providing me some M64283FPs. I've done my homeworks now, Mr Razole.
