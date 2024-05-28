@@ -1,5 +1,5 @@
 # Play with the Mitsubishi M64283FP sensor
-A set of codes to address the Mitsubishi M64283FP artificial retina with Arduino. These codes are [compatible with the M64282FP sensor](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) of the Game Boy Camera as well. Codes proposed here are just working concepts but they can easily be adapted to ESP32 or [Raspberry Pi Pico](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam).
+A set of codes to address the Mitsubishi M64283FP artificial retina with Arduino. These codes are [compatible with the M64282FP sensor](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) of the Game Boy Camera as well. Codes proposed here are just working concepts but they can easily be adapted to ESP32 or [Raspberry Pi Pico](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam), just follow the coments in code.
 
 ## Some history
 Mitsubishi created a series of CMOS sensors called “artificial retina”, with the aim of becoming inexpensive, easy-to-program consumer products. The first traces of these sensors in literature date back to 1994, but their commercial boom really began in 1998 with the launch of the Game Boy Camera and the first mass-produced sensor, the M64282FP. The trace of these sensors is then lost in more or less mass-market products, and they have certainly equipped cell phones, consumer multimedia products, fingerprint readers and security cameras, but the reference of the sensors used is lost to this day. It is almost certain that the M64283FP sensor equipped the [“LaPochee” module](https://time-space.kddi.com/ketaizukan/1999/11.html) accompanying the [the THZ43 Chiaro cell phone by Mitsubishi](https://time-space.kddi.com/ketaizukan/1999/10.html) and the [PCPICO](https://web.archive.org/web/20020925132513/http://pcpico.com/), a kind of multimedia interface in which the role of the sensor is not clear at all.
@@ -104,6 +104,8 @@ The M64282FP also has masked pixels lines (4 lines at the bottom of image) but t
 
 Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts (like shifting the register E table and correcting a bit Vref with register O).
 
+**As The Arduino Uno is totally unable to drive the clock at 500MHz, the device is very severely underclocked and exposure is always too long by a factor of 4 at least. Images in daylight are impossible for this reason.**
+
 ## The random access mode
 
 The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). And it just works.
@@ -118,9 +120,7 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
 
-The Game Boy Camera is compatible with the M64283FP but does not give easy access to the TADD pin.
-
-The M64282FP is yellowish while the M64283FP is more grayish.
+The Game Boy Camera is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
 
 **Image taken without left) and with (right) image enhancement at 50% intensity**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
