@@ -16,14 +16,18 @@ ce capteur apparaît sporadiquement sur des sites d'enchère en ligne japonais p
 
 ## Register setting
 
+**Register mapping according to the English Datasheet of the M64283FP sensor**
+![](/Pictures%20and%20datasheets/Registers_address_2.png)
+
+**Register mapping according to the Japanese Datasheet of the M64283FP sensor**
+![](/Pictures%20and%20datasheets/Registers_address.png)
+
 ## The random access mode
+
+**Register setting to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
+![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
 ## Showcase
 
-![](/Pictures%20and%20datasheets/Registers_address.png)
-
-![](/Pictures%20and%20datasheets/Registers_address_2.png)
-
-![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
-
+**M64282FP sensor (left) and M64283FP sensor (right) on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
