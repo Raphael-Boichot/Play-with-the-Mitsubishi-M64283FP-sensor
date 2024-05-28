@@ -115,19 +115,27 @@ The English datasheet is totally confusing about how to activate the random acce
 
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin. The project can also use the PCB proposed here.
 
-**M64282FP sensor (left) and M64283FP sensor (right) on a Game Boy Camera sensor PCB**
+**M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
+
+The Game Boy Camera is compatible with the M64283FP but does not give easy access to the TADD pin.
 
 The M64282FP is yellowish while the M64283FP is more grayish.
 
 **Image taken without left) and with (right) image enhancement at 50% intensity**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
+The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
+
 **Image taken strip by strip with random access to the sensor surface**
 ![](/Pictures%20and%20datasheets/Random_access.png)
 
+The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
+
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
+
+I did use here my janky prototyping board but it would be easier for you to order the custom PCB.
 
 ## Acknowledgments
 
