@@ -19,6 +19,25 @@ ce capteur apparaît sporadiquement sur des sites d'enchère en ligne japonais p
 **Register mapping according to the English Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
 
+**Address 000, TADD HIGH**
+**Register Z1-Z0:** used to correct the output voltage (VOUT) so that it matches Vref given by register V in dark conditions. In total darkness, VOUT anyway shifts with exposure time compared to Vref and can be corrected other registers (see next). Default values recommended: Z1 = 1 and Z0 = 0.
+**Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to register Vref given by register V. MSB gives the polarity of the applied voltage.
+The registers at this address have exactly the same effect with the M64282FP sensor.
+
+**Address 001, TADD HIGH**
+**Registers N, VH:** enable image enhancement (N) and choose which convolution kernel to apply among 4 (VH0, VH1). Convolution kernels can also be forced via P, M and X registers. The formula to force custom kernels is not trivial.
+**Registers G:** output gain, see tables in datasheet.
+The registers at this address have exactly the same effect with the M64282FP sensor.
+
+**Address 010 and 011, TADD HIGH**
+**Register C:** Exposure time in 65535 increments of 16 µs. Maximal exposure is 1048 ms if clock is set to 500 Mhz. Downclocking is possible to increase exposure time but overcloking gives image with intense artifacts (top of the image becomes black). Without image enhancement, 0x0010 is the minimal exposure recommended. With image enhancement, 0x0020 is the minimal exposure recommended (0x0030 for the M64283FP). Using values below that creates images with black parts.
+The registers at this address have exactly the same effect with the M64282FP sensor.
+
+**Address 100, TADD HIGH**
+**Registers SH, AZ** totally confusing role in the English datasheet, eluded in the Japanese datasheet. Recommended default values: SH = 0, AZ = 0.
+**Registers P3-P0** convolution kernels
+The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.
+
 **Register mapping according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
 
