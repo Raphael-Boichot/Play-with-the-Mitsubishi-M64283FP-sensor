@@ -35,8 +35,20 @@ The registers at this address have exactly the same effect with the M64282FP sen
 
 **Address 100, TADD HIGH**
 **Registers SH, AZ** totally confusing role in the English datasheet, eluded in the Japanese datasheet. Recommended default values: SH = 0, AZ = 0.
-**Registers P3-P0** convolution kernels
+**Register CL:** Enable the auto-calibration circuit. Is used in conjonction with OB that outputs a line of dark pixels. 0 is active.
+**Registers P3-P0** custom convolution kernels. 0x0001 by default.
 The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.
+
+**Address 101, TADD HIGH**
+**Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection).
+**Register MV4:** plus or minus bias for projection mode.
+**Register OB:** Enable to output optical black level as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
+**Register M3-M0:** custom convolution kernels. 0x0000 by default.
+
+**Address 110, TADD HIGH**
+**Register MV3-MV0:** voltage bias for the projection mode, 16 steps of 8 mV.
+**Register X3-X0:** custom convolution kernels. 0x0001 by default.
+
 
 **Register mapping according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
