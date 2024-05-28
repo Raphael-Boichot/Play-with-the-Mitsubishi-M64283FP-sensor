@@ -8,7 +8,9 @@ The originality (and shortcoming) of these sensors is that they produce an analo
 
 To overcome this shortcoming, the sensors in the analog range evolved towards random tile addressing (M64283FP) and lower definitiveness (M64285FP), but eventually disappeared in favor of faster, fully digital sensors. It is totally unknown now which sensor equipped with apparatus and what the production volume was, except for the Game Boy Camera.
 
-Mitsubishi's sensor division was finally incorporated into Renesas in 2003. The M642XX sensor series is notorious for the disastrous translation of these datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet is available.
+Mitsubishi's sensor division was finally incorporated into Renesas in 2003. The M642XX sensor series is notorious for the disastrous translation of these datasheets which were probably never though to be distributed outside Japan. Hopefully, the M64283FP original datasheet is available and the translated version is at least understandable.
+
+The M64283FP was probably available for retail as it had a quite successful carrer in labs to make augmented vision equipment, both in Japanese laboratory and in the West. 
 
 ## Register setting
 
