@@ -16,8 +16,14 @@ ce capteur apparaît sporadiquement sur des sites d'enchère en ligne japonais p
 
 ## Register setting
 
-
-
 ## The random access mode
 
 ## Showcase
+
+![](/Pictures%20and%20datasheets/Registers_address.png)
+
+![](/Pictures%20and%20datasheets/Registers_address_2.png)
+
+![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
+
+![](/Pictures%20and%20datasheets/Sensor_comparison.png)
