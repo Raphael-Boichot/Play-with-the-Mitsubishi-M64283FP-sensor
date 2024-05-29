@@ -134,6 +134,8 @@ The random access to sensor surface increases very efficiently the frame rate, i
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
+Final words: soldering/desoldering these sensors with acrylic window is a bit stressful. I recommend covering the window with heat resistant tape and working fast with a fine tip soldering iron. Do one side, let cool down, then do the other side. In case of failure, let the sensor cool down before coming back to it. No need for low temperature solder, just be precise and fast.
+
 ## Acknowledgments
 
 - [Andreas Hahn](https://github.com/HerrZatacke) for the [M64283FP/82FP-compatible PCB](https://github.com/HerrZatacke/M64283FP-Camera-PCB). 
