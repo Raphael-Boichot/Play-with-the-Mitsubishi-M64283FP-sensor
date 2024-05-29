@@ -25,9 +25,9 @@ Understanding the registers system for the first time is not trivial, knowing th
 **Register mapping according to the English Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
 
-The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a sensor pin used to push registers at high address ranges, exclusive to the M64283FP (the pin is not connected on the M64282FP). It must be HIGH by default, except for last two addresses, at precise moments.
+The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a sensor pin used to push registers at high address ranges, exclusive to the M64283FP. It must be HIGH by default, except for last two addresses, at precise moments. The equivalent pin called TSW on the M64282FP is always HIGH and has the following comment: _NOTE: don't connect this pin._ So of course I've tried to connect it but without any clear result, the M64282FP sensor just goes crazy.
 
-Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it. The registers have no particular order, they can be pushed at any address one after the other. When the 8 first at least are sent, the sensor is ready.
+Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it. The registers have no particular order, they can be pushed at any address one after the other per packets of 11 bits (3 bits address + 8 bits registers), address first. When the 8 first addresses are validated (TADD HIGH), the sensor is ready and can start without the 2 additionnal registers.
 
 **Address 000, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Register Z1-Z0:** used to force the output voltage of the sensor (VOUT) to match Vref given by register V, in dark conditions (other said, it fixes the lowest possible voltage). In total darkness, Vref however shifts a bit with exposure time compared to value given by register V and can be corrected by activating an auto-calibration circuit (see next addresses). Default values recommended: Z1 = 1 and Z0 = 0.
