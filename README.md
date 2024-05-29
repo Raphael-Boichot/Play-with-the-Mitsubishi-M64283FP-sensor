@@ -47,7 +47,7 @@ Even by translating the original datasheet, this is a bit confusing (what is cal
 
 
 **Address 100, TADD HIGH** (The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor)
-- **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0. Forget them basically.
+- **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0. **Forget them basically.**
 - **Register CL:** Enables the auto-calibration circuit and cancels the voltage shift of Vref with exposure time. Is used in conjonction with OB that outputs the signal from a line of masked pixels for reference in the dark at the very top of the image. 0 is active.
 - **Registers P3-P0** custom convolution kernels. 0b0001 by default.
 
@@ -89,7 +89,9 @@ The Japanese datatsheet also proposes a table of registers which must be let at 
 **Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
 
-## some notes
+Even if it doesn't appear so at first glance, this simple table clarifies all the issues raised by the poorly translated English datasheet. Obscure/unknown/ill documented registers are all set to zero !
+
+## Some additional notes
 
 Pushing the default Game Boy camera registers to a M64283FP is overall OK: auto-calibration is activated by default, VOUT is set to Vref in the dark (minus the drift), registers ST and END are not sent. The only noticable difference is the table of register E. While the default value in the Game Boy Camera is 0b000 (50% enhancement intensity with the M64282FP), it corresponds to 0% enhancement intensity with the M64283FP. So image appears very soft.
 
