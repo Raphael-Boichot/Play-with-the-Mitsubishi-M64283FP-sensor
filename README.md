@@ -27,7 +27,7 @@ The English datasheet gives the whole list of registers. Most of them have no pr
 
 Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it. The registers have no particular order, they can be pushed at any address one after the other. When the 8 first at least are sent, the sensor is ready.
 
-**Address 000, TADD HIGH**
+**Address 000, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Register Z1-Z0:** used to force the output voltage of the sensor (VOUT) to match Vref given by register V in dark conditions (other said, it fixes the lowest possible voltage). In total darkness, Vref however shifts a bit with exposure time compared to value given by register V and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0. With the M64282FP sensor, this voltage shift can be corrected only with register O (see next).
 - **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to Vref given by register V. MSB gives the polarity (plus or minus) of the applied voltage. Its relevancy with the M64283FP sensor is debatable as this sensor requires no extra calibration when correctly programmed. But it's there anyway. On the M64282FP, it is the only way to fine tune Vref when it drifts with exposure time.
 
@@ -36,69 +36,52 @@ Most of the registers acts the same with the Game Boy Camera, so these explanati
 
 Even by translating the original datasheet, this is a bit confusing (what is called VOffset is effect of O for me) but you get the idea: always set Z1 to 1 and you'll get a dark signal approximately equal to voltage given by register V, called Vref. This Vref varies between sensors for a same set of registers, but also with exposure time. This variation is called VOffset. Variations can be cancelled automatically by using register CL with the M64283FP sensor. Vref is the sum of V (raw tuning) and O (fine tuning). On the M64282FP sensor, CL register does not exist, so the only way to cancel Voffset is to pre-calculate a lookup table of register O to apply for each sensor and exposure time. This is basically what the [Game Boy Camera calibration procedure](https://github.com/Raphael-Boichot/Inject-pictures-in-your-Game-Boy-Camera-saves?tab=readme-ov-file#part-3-calibrating-the-sensor) does.
 
-_**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
-
-**Address 001, TADD HIGH**
+**Address 001, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Registers N, VH:** enable image enhancement (N) and choose which convolution kernel to apply among 4 pre-calculated ones (VH0, VH1). Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all.
 - **Registers G:** output gain, see tables in datasheet.
 
-_**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
-
-**Address 010 and 011, TADD HIGH**
+**Address 010 and 011, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Register C:** Exposure time in 65535 (0xFFFF, 2x8 bits) increments of 16 µs. Maximal exposure is 1048 ms if the clock signal is set to 500 khz, recommend frequency. Downclocking is possible to increase exposure time but overcloking gives image with artifacts (top of the image becomes more and more dark with increasing frequency). Without image enhancement, 0x0010 is the minimal exposure recommended. With image enhancement, 0x0020 is the minimal exposure recommended (0x0030 for the M64283FP). Using values below these creates images with very strong artifacts.
 
-_**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
-
-**Address 100, TADD HIGH**
+**Address 100, TADD HIGH** (The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor)
 - **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0. Forget them basically.
 - **Register CL:** Enables the auto-calibration circuit and cancels the voltage shift of Vref with exposure time. Is used in conjonction with OB that outputs the signal from a line of masked pixels for reference in the dark at the very top of the image. 0 is active.
 - **Registers P3-P0** custom convolution kernels. 0b0001 by default.
 
-_**The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.**_
 
-
-**Address 101, TADD HIGH**
+**Address 101, TADD HIGH** (These registers differ notably from M64282FP sensor)
 - **Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection).
 - **Register MV4:** plus or minus bias for projection mode.
 - **Register OB:** Enable to output optical black level (electrical signal of physically masked pixels) as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
 - **Register M3-M0:** custom convolution kernels. 0b0000 by default.
 
-_**These registers differ notably from M64282FP sensor.**_
 
-
-**Address 110, TADD HIGH**
+**Address 110, TADD HIGH** (These registers differ notably from M64282FP sensor)
 - **Register MV3-MV0:** voltage bias for the projection mode, 16 steps of 8 mV.
 - **Register X3-X0:** custom convolution kernels. 0b0001 by default.
 
-_**These registers differ notably from M64282FP sensor.**_
 
-
-**Address 111, TADD HIGH**
+**Address 111, TADD HIGH** (The registers at this address have similar, but not identical effect with the M64282FP sensor)
 - **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to cancel this effect is so to use register N**
 - **Register I:** outputs the image in negative, but messes the voltage range too.
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
-_**The registers at this address have similar, but not identical effect with the M64282FP sensor.**_
 
 Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default.
 
-**Address 001, TADD LOW (optional registers)**
+**Address 001, TADD LOW (optional registers)** (These registers do not exist in the M64282FP sensor)
 - **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (range 0-15).
 - **Register ST3-ST0:** start address in x for random adressing mode in 4 bits (range 0-15).
 If ending address is lower that starting address, the whole register is set to 0b00000000 (whole image capture).
 
-_**These registers do not exist in the M64282FP sensor.**_
 
-
-**Address 010, TADD LOW (optional registers)**
+**Address 010, TADD LOW (optional registers)** (These registers do not exist in the M64282FP sensor)
 - **Register END7-END4:** ending address in y for random adressing mode in 4 bits (range 0-15).
 - **Register END3-END0:** ending address in x for random adressing mode in 4 bits (range 0-15).
 If ending address is lower that starting address, the whole register is set to 0b00000000 (whole image capture).
-
-_**These registers do not exist in the M64282FP sensor.**_
 
 
 The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers in English. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
