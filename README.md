@@ -23,11 +23,13 @@ Understanding the registers system for the first time is not trivial, knowing th
 **Register mapping according to the English Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address_2.png)
 
-The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a pin only used to push registers at address ranges not available with the M64282FP sensor (the pin is not connected on this sensor). It must be always HIGH, except for last two addresses.
+The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a sensor pin used to push registers at high address ranges, exclusive to the M64283FP (the pin is not connected on the M64282FP). It must be HIGH by default, except for last two addresses, at precise moments.
+
+Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it.
 
 **Address 000, TADD HIGH**
-- **Register Z1-Z0:** used to set the output voltage of the sensor (VOUT) so that it matches Vref given by register V in dark conditions (other said, it gives the lowest reference voltage). In total darkness, VOUT however shifts a bit with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0. With the M64282FP sensor, this voltage shift can be corrected only with register O (see next).
-- **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to Vref given by register V. MSB gives the polarity (plus or minus) of the applied voltage. Its relevancy with the M64283FP sensor is debatable as this sensor requires no calibration. But it's there anyways.
+- **Register Z1-Z0:** used to set the output voltage of the sensor (VOUT) so that it matches Vref given by register V in dark conditions (other said, it fixes the lowest possible voltage). In total darkness, VOUT however shifts a bit with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0. With the M64282FP sensor, this voltage shift can be corrected only with register O (see next).
+- **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to Vref given by register V. MSB gives the polarity (plus or minus) of the applied voltage. Its relevancy with the M64283FP sensor is debatable as this sensor requires no extra calibration. But it's there anyways. On the M64282FP, it is the only way to fine tune Vref when it drifts with exposure time. Tuning O is the base of the [Game Boy Camera calibration procedure](https://github.com/Raphael-Boichot/Inject-pictures-in-your-Game-Boy-Camera-saves?tab=readme-ov-file#part-3-calibrating-the-sensor).
 
 _**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
