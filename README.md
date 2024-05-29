@@ -129,7 +129,7 @@ The effect of image enhancement is a little bit less aesthetic than with the M64
 
 The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
 
-**96x96 pixels image cropped by random access, alleged image format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) versus full frame 128x128 image**
+**96x96 pixels image cropped by random access, alleged image format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 image**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
