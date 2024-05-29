@@ -34,6 +34,8 @@ Most of the registers acts the same with the Game Boy Camera, so these explanati
 **Effect of registers V and O translated from the original Japanese datasheet**
 ![](/Pictures%20and%20datasheets/Bias_registers.png)
 
+Even by translating the original datasheet, this is a bit confusing but you get the idea: always set Z1 to 1 and you'll get a dark signal approximately equal to voltage given by register V, called Vref. This Vref varies between sensors for a same set of registers. These variations can be cancelled automatically by using register CL. Vref is the sum of V (raw tuning) and O (fine tuning). On the M64282FP sensor, CL register does no exist, so the only way 
+
 _**The registers at this address have exactly the same effect with the M64282FP sensor.**_
 
 
@@ -143,7 +145,7 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
 
-I did use here my janky prototyping board but it would be easier for you to order the custom PCB.
+I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
 ## Acknowledgments
 
