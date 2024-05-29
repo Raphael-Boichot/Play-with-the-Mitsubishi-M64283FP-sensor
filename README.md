@@ -16,7 +16,7 @@ The M64283FP was probably available for retail at a certain point as it had a qu
 
 This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained two copies of the M64283FP in the summer 2023 from a generous donator who knew someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me.
 
-## Register setting
+## Register setting, the comprehensive explanation
 
 Understanding the registers system for the first time is not trivial, knowing the sketchy documentation available. Despite everything, through trial and error, datalogging and a bit of educated guess (plus quite a lot of time), I think I overall understand how to drive them now.
 
