@@ -72,7 +72,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
 
-Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image data are spit in reading order like a regular image. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
+Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image data are spit in reading order like a regular image, but with new dimensions. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
 
 **Address 001, TADD LOW (optional registers)** (These registers do not exist in the M64282FP sensor)
 - **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (range 0-15).
@@ -117,7 +117,7 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
 
-The Game Boy Camera is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
+The Game Boy Camera sensor board is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
 
 **Image taken without (left) and with (right) image enhancement at 50% intensity, plastic lens**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
