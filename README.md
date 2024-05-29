@@ -12,7 +12,7 @@ The originality (and shortcoming) of these sensors is that they produce an analo
 
 To overcome this slow data transmission rate, the sensors in the artificial retina series evolved towards random tile addressing and projection to reduce the flow rate of pixels to convert (M64283FP) and lower definition (M64285FP with 32x32 pixels matrix), but eventually disappeared in favor of faster, fully digital sensors. It is totally unknown to this date which sensor equipped with apparatus and what the production volume was, except for the Game Boy Camera.
 
-Mitsubishi sensor division was finally incorporated into Renesas in 2003 and the artificial retinas eventually faded into total obscurity. The M642XX sensor series is notorious for the rushed translation of their datasheets which were probably never though to be understood outside Japan. Hopefully, the M64283FP original datasheet in Japanese is available and the translated version is at least barely understandable.
+Mitsubishi sensor division was finally incorporated into Renesas in 2003 and the artificial retinas eventually faded into total obscurity. The M64282-83 sensor series is notorious for the rushed translation of their datasheets which were probably never though to be understood outside Japan. Hopefully, the M64283FP original datasheet in Japanese is available and the translated version is at least barely understandable.
 
 The M64283FP was probably available for retail at a certain point as it had a quite successful carreer in labs to tinker augmented vision systems, both in Japanese laboratory and in the West. 
 
