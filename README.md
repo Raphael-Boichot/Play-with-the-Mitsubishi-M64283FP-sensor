@@ -25,10 +25,10 @@ Understanding the registers system for the first time is not trivial, knowing th
 
 The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a sensor pin used to push registers at high address ranges, exclusive to the M64283FP (the pin is not connected on the M64282FP). It must be HIGH by default, except for last two addresses, at precise moments.
 
-Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it.
+Most of the registers acts the same with the Game Boy Camera, so these explanations can be used as reference for it. The registers have no particular order, they can be pushed at any address one after the other. When the 8 first at least are sent, the sensor is ready.
 
 **Address 000, TADD HIGH**
-- **Register Z1-Z0:** used to set the output voltage of the sensor (VOUT) so that it matches Vref given by register V in dark conditions (other said, it fixes the lowest possible voltage). In total darkness, VOUT however shifts a bit with exposure time compared to Vref and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0. With the M64282FP sensor, this voltage shift can be corrected only with register O (see next).
+- **Register Z1-Z0:** used to set the output voltage of the sensor (VOUT) so that it matches Vref given by register V in dark conditions (other said, it fixes the lowest possible voltage). In total darkness, Vref however shifts a bit with exposure time compared to value given by register V and can be corrected by activating an auto-calibration circuit (see next). Default values recommended: Z1 = 1 and Z0 = 0. With the M64282FP sensor, this voltage shift can be corrected only with register O (see next).
 - **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to Vref given by register V. MSB gives the polarity (plus or minus) of the applied voltage. Its relevancy with the M64283FP sensor is debatable as this sensor requires no extra calibration. But it's there anyways. On the M64282FP, it is the only way to fine tune Vref when it drifts with exposure time. Tuning O is the base of the [Game Boy Camera calibration procedure](https://github.com/Raphael-Boichot/Inject-pictures-in-your-Game-Boy-Camera-saves?tab=readme-ov-file#part-3-calibrating-the-sensor).
 
 _**The registers at this address have exactly the same effect with the M64282FP sensor.**_
@@ -48,8 +48,8 @@ _**The registers at this address have exactly the same effect with the M64282FP 
 
 
 **Address 100, TADD HIGH**
-- **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0.
-- **Register CL:** Enables the auto-calibration circuit and cancels the voltage shift of VOUT with exposure time. Is used in conjonction with OB that outputs the signal from a line of masked pixels for reference in the dark at the very top of the image. 0 is active.
+- **Registers SH, AZ** totally confusing role in the English datasheet, not even mentioned in the Japanese datasheet. I guess these are not critical so. Recommended default values: SH = 0, AZ = 0. Forget them basically.
+- **Register CL:** Enables the auto-calibration circuit and cancels the voltage shift of Vref with exposure time. Is used in conjonction with OB that outputs the signal from a line of masked pixels for reference in the dark at the very top of the image. 0 is active.
 - **Registers P3-P0** custom convolution kernels. 0b0001 by default.
 
 _**The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor.**_
@@ -64,7 +64,6 @@ _**The registers P3-P0 at this address have exactly the same effect with the M64
 _**These registers differ notably from M64282FP sensor.**_
 
 
-
 **Address 110, TADD HIGH**
 - **Register MV3-MV0:** voltage bias for the projection mode, 16 steps of 8 mV.
 - **Register X3-X0:** custom convolution kernels. 0b0001 by default.
@@ -73,29 +72,31 @@ _**These registers differ notably from M64282FP sensor.**_
 
 
 **Address 111, TADD HIGH**
-- **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to remove this effect is so to use register N**
-- **Register I:** outputs the image in negative.
-- **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is forbidden. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
+- **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to cancel this effect is so to use register N**
+- **Register I:** outputs the image in negative, but messes the voltage range too.
+- **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
 _**The registers at this address have similar, but not identical effect with the M64282FP sensor.**_
 
 Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default.
 
-**Address 001, TADD LOW**
-- **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (0-15).
-- **Register ST7-ST4:** start address in x for random adressing mode in 4 bits (0-15).
+**Address 001, TADD LOW (optional registers)**
+- **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (range 0-15).
+- **Register ST3-ST0:** start address in x for random adressing mode in 4 bits (range 0-15).
+If ending address is lower that starting address, the whole register is set to 0b00000000 (whole image capture).
 
 _**These registers do not exist in the M64282FP sensor.**_
 
 
-**Address 010, TADD LOW**
-- **Register END7-END4:** ending address in y for random adressing mode in 4 bits (0-15).
-- **Register ST7-ST4:** ending address in x for random adressing mode in 4 bits (0-15).
+**Address 010, TADD LOW (optional registers)**
+- **Register END7-END4:** ending address in y for random adressing mode in 4 bits (range 0-15).
+- **Register END3-END0:** ending address in x for random adressing mode in 4 bits (range 0-15).
+If ending address is lower that starting address, the whole register is set to 0b00000000 (whole image capture).
 
 _**These registers do not exist in the M64282FP sensor.**_
 
 
-The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
+The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers in English. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
 
 **Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
@@ -104,11 +105,11 @@ The Japanese datatsheet also proposes a table of registers which must be let at 
 
 Pushing the default Game Boy camera registers to a M64283FP is overall OK: auto-calibration is activated by default, VOUT is set to Vref in the dark (minus the drift), registers ST and END are not sent. The only noticable difference is the table of register E. While the default value in the Game Boy Camera is 0b000 (50% enhancement intensity with the M64282FP), it corresponds to 0% enhancement intensity with the M64283FP. So image appears very soft.
 
-The M64282FP also has masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if the sensor was dazzled in full light). I think nothing usefull can be deduced from this signal. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
+The M64282FP also has masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if the sensor was dazzled in full light). I think nothing usefull can be deduced from this signal, I do not understand their purpose at first glance. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
 
-Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts (like shifting the register E table and correcting a bit Vref with register O).
+Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts (like shifting the register E table).
 
-**As The Arduino Uno is totally unable to drive the clock at 500 kHz, the device is very severely underclocked and exposure is always too long by a factor of 4 at least. Images in daylight are impossible for this reason.**
+**As The Arduino Uno is totally unable to drive the clock at 500 kHz, the device is very severely underclocked here and exposure is always too long by a factor of 4 at least. Images in full daylight are always white for this reason.**
 
 ## The random access mode
 
