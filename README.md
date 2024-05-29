@@ -105,7 +105,7 @@ Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom 
 
 ## The random access mode
 
-The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). And it just works.
+The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). My own tests show that CL and OB = 1 are mandatory, not N, VH1, VH0 = 0.
 
 **Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
@@ -128,6 +128,9 @@ The effect of image enhancement is a little bit less aesthetic than with the M64
 ![](/Pictures%20and%20datasheets/Random_access.png)
 
 The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
+
+**96x96 pixels image cropped by random access, alleged image format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) versus full frame 128x128 image**
+![](/Pictures%20and%20datasheets/LaPochee.png)
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
