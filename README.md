@@ -132,14 +132,14 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **96x96 pixels image cropped by random access, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 image**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
-The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition (basically both the CLOCK and the ADC are too slow and the voltage drifts). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 is not a reliable option due to its sluggish ADC.
+The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 produces images with the same artifacts due to its sluggish ADC.
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
-Final words: soldering/desoldering these sensors with acrylic window is a bit stressful. I recommend covering the window with heat resistant tape and working fast with a fine tip soldering iron. Do one side, let cool down, then do the other side. In case of failure, let the sensor cool down before coming back to it. No need for low temperature solder, just be precise and fast.
+Final words: soldering/desoldering these sensors with fragile front acrylic window is a bit stressful. I recommend covering the window with heat resistant tape and working fast with a fine tip soldering iron. Do one side, let cool down, then do the other side. In case of failure, let the sensor cool down before coming back to it. No need for low temperature solder, just be precise and fast. I also recommend to push hard with the finger when soldering to ensure optical that plane is parallel to the PCB and drain as much heat as possible by thermal conduction. 
 
 ## Acknowledgments
 
