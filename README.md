@@ -139,7 +139,7 @@ The dark halo on top of the image is due to timing inconsistencies when using th
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
-Final words: soldering/desoldering these sensors with fragile front acrylic window is a bit stressful. I recommend covering the window with heat resistant tape and working fast with a fine tip soldering iron. Do one side, let cool down, then do the other side. In case of failure, let the sensor cool down before coming back to it. No need for low temperature solder, just be precise and fast. I also recommend to push hard with the finger when soldering to ensure optical that plane is parallel to the PCB and drain as much heat as possible by thermal conduction. 
+Final words: soldering/desoldering these sensors with fragile front acrylic window is a bit stressful. I recommend covering the window with heat resistant tape and working fast with a fine tip soldering iron. Do one side, let cool down, then do the other side. In case of failure, let the sensor cool down before coming back to reflow. No need for low temperature solder, just be precise and fast. I also recommend to push hard with the finger when soldering to ensure that optical plane is parallel to the PCB and drain as much heat as possible by thermal conduction. 
 
 ## Acknowledgments
 
