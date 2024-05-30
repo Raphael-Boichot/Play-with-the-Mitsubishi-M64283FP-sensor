@@ -97,7 +97,7 @@ Even if it doesn't appear so at first glance, this simple table clarifies all th
 
 Pushing the default Game Boy camera registers to a M64283FP is overall OK: auto-calibration is activated by default, VOUT is set to Vref in the dark (minus the drift), registers ST and END are not sent. The only noticable difference is the table of register E. While the default value in the Game Boy Camera is 0b000 (50% enhancement intensity with the M64282FP), it corresponds to 0% enhancement intensity with the M64283FP. So image appears very soft.
 
-The M64282FP also has masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if the sensor was dazzled in full light). I think nothing usefull can be deduced from this signal, I do not understand their purpose at first glance. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
+The M64282FP has also masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if the sensor was dazzled in full light). I think nothing usefull can be deduced from this signal, I do not understand their purpose at first glance. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
 
 Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts (like shifting the register E table).
 
