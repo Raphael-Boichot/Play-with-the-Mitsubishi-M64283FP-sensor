@@ -132,6 +132,8 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **96x96 pixels image cropped by random access, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 image**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
+The dark halo on the top of the image is due to timing inconsistency with the Arduino Uno. Using a faster device like a Raspberry Pi Pico allows bitbanging the CLOCH at 500kHz and fixes this issue.
+
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
 
