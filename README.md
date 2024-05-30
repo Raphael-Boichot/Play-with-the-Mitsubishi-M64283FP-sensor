@@ -132,7 +132,7 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **96x96 pixels image cropped by random access, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 image**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
-The dark halo on the top of the image is due to timing inconsistency with the Arduino Uno during image reading (basically the ADC is too slow and the voltage drifts). Using a device with a decent fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz during VOUT reading and fixes this issue. Surprisingly, thee ESP32 suffers the same issue as the Arduino due to its sluggish ADC.
+The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition (basically both the CLOCK and the ADC are too slow and the voltage drifts). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 is not a reliable option due to its sluggish ADC.
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
