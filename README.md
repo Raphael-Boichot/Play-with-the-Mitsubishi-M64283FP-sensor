@@ -110,6 +110,10 @@ The English datasheet is totally confusing about how to activate the random acce
 **Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
+## The projection mode
+
+Based on the English datasheet instructions (which are totally confusing), I'm not able to get other than noise or very faint signal variations with this mode. There is not a single word of it in the Japanese one. I guess this isn't the device most prominent feature... Only benefit: outputing only 128 bytes of data per image is very fast.
+
 ## Showcase
 
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin. The project can also use the PCB proposed here.
