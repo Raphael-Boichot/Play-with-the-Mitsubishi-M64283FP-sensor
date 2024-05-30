@@ -55,7 +55,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 
 **Address 101, TADD HIGH** (These registers differ notably from M64282FP sensor)
-- **Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection).
+- **Registers PX, PY:** projection mode when active (vertical, horizontal, none). Recommended values: PX = 0, PY = 0 (no projection). This mode seems dismissed in the Japanese datasheet as no typical set of registers are provided to activate it.
 - **Register MV4:** plus or minus bias for projection mode.
 - **Register OB:** Enable to output optical black level (electrical signal of physically masked pixels) as a dark pixel line at the top of the image. Is used in conjonction with CL. 0 is active.
 - **Register M3-M0:** custom convolution kernels. 0b0000 by default.
