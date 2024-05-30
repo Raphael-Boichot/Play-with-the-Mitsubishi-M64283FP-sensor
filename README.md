@@ -123,20 +123,20 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 
 The Game Boy Camera sensor board is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
 
-**Image taken without (left) and with (right) image enhancement at 50% intensity, plastic lens**
+**Image taken without (left) and with (right) image enhancement at 50% intensity, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
 The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
 
-**Image taken strip by strip with random access to the sensor surface, plastic lens**
+**Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/Random_access.png)
 
 The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
 
-**96x96 pixels image cropped by random access, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 image**
+**96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
-The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 produces [images with similar artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) due to its sluggish ADC.
+The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 produces [images with same kind of artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) due to its surprisingly slow as shit ADC.
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
