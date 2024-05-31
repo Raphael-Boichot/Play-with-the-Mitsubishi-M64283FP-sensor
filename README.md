@@ -112,7 +112,7 @@ The English datasheet is totally confusing about how to activate the random acce
 
 ## The projection mode
 
-Based on the English datasheet instructions (which are totally confusing), I'm not able to get other than noise or very faint signal variations with this mode. There is not a single word of it in the Japanese one. I guess this isn't the device most prominent feature... Only benefit: outputing only 128 bytes of data per image is very fast.
+Based on the English datasheet instructions (which are totally confusing), I'm not able to get other than noise or very faint signal variations with this mode. There is not a single word of it in the Japanese one. I guess this isn't the device most prominent feature... Only benefit: outputing only 128 bytes of crap data per image is ultra fast.
 
 ## Showcase
 
