@@ -112,7 +112,7 @@ The English datasheet is totally confusing about how to activate the random acce
 
 ## The projection mode - is it real ?
 
-Based on the English datasheet instructions (which are totally confusing and contradictory), I'm not able to get other than noise or very faint signal variations with this mode. I've tried many random variations of the recommended registers. I got things. There is not a single mention of projection mode in the Japanese datasheet. I guess this isn't the device most prominent feature. Only benefit: outputing only 128 bytes of crap data per image is ultra fast.
+Based on the English datasheet instructions (which are totally confusing and contradictory), I'm not able to get other than noise or very faint signal variations with this mode. I've tried many random variations of the recommended registers. I got things. There is not a single mention of projection mode in the Japanese datasheet. I guess this isn't the device most prominent feature. Only benefit: outputing only 128 bytes of crap data per image is ultra fast (theoretically about 4000 "f"ps).
 
 ## Showcase
 
