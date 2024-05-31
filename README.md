@@ -18,7 +18,7 @@ Mitsubishi sensor division was finally incorporated into Renesas in 2003 and the
 
 The M64283FP was probably available for retail at a certain point as it had a quite successful carreer in labs to tinker augmented vision systems, both in Japanese laboratory and in the West. 
 
-This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained two copies of the M64283FP in the summer 2023 from a generous donator who knew someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me.
+This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained three units of the M64283FP in the summer 2023 from a generous donator who knew someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me. I gave one to a trusted modder of the Game Boy retro community as obsessed as me with documenting ths kind of stuff.
 
 ## Register setting, the comprehensive explanation
 
