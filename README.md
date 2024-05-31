@@ -110,9 +110,9 @@ The English datasheet is totally confusing about how to activate the random acce
 **Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
-## The projection mode
+## The projection mode - is it real ?
 
-Based on the English datasheet instructions (which are totally confusing), I'm not able to get other than noise or very faint signal variations with this mode. There is not a single word of it in the Japanese one. I guess this isn't the device most prominent feature... Only benefit: outputing only 128 bytes of crap data per image is ultra fast.
+Based on the English datasheet instructions (which are totally confusing and contradictory), I'm not able to get other than noise or very faint signal variations with this mode. I've tried many random variations of the recommended registers. I got things. There is not a single mention of projection mode in the Japanese datasheet. I guess this isn't the device most prominent feature. Only benefit: outputing only 128 bytes of crap data per image is ultra fast.
 
 ## Showcase
 
