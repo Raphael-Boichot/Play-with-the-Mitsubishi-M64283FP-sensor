@@ -42,9 +42,11 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 
 **Address 001, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
-- **Registers N, VH:** enable image enhancement (N) and choose which convolution kernel to apply among 4 pre-calculated ones (VH0, VH1). Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all.
+- **Registers N, VH1, VH0:** playing with these 3 registers enable image enhancement and choose which convolution kernel to apply among 4 pre-calculated ones. Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all. All 3 must be set to 0 to disable safely border enhancements.
 - **Registers G:** output gain, see tables in datasheet.
 
+**Effect of N, VH1 and VH0 at 87.5% enhancement intensity**
+![](/Pictures%20and%20datasheets/Enhancement.png)
 
 **Address 010 and 011, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Register C:** Exposure time in 65535 (0xFFFF, 2x8 bits) increments of 16 µs. Maximal exposure is 1048 ms if the clock signal is set to 500 khz, recommended frequency. Downclocking is possible to increase exposure time but overcloking gives image with artifacts (top of the image becomes more and more dark with increasing frequency). Without image enhancement, 0x0010 is the minimal exposure recommended. With border enhancement, 0x0021 is the minimal exposure recommended (0x0030 for the M64282FP). Using values below these creates images with very strong artifacts. C = 0x0000 is a forbidden state.
