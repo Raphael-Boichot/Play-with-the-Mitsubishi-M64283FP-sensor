@@ -42,7 +42,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 
 **Address 001, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
-- **Registers N, VH1, VH0:** playing with these 3 registers enable image enhancement and choose which convolution kernel to apply among 4 pre-calculated ones. Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all. All 3 must be set to 0 to disable safely border enhancements.
+- **Registers N, VH1, VH0:** playing with these 3 registers enable image enhancement and choose which convolution kernel to apply among 4 pre-calculated ones. Convolution kernels can also be forced via P, M and X registers if you like pain. The formula to force custom kernels is not trivial at all. All 3 must be set to 0 to disable safely border enhancements. The English datasheet has vertical and horizontal enhancements inversed in the register array. 
 - **Registers G:** output gain, see tables in datasheet.
 
 **Effect of N, VH1 and VH0 at 87.5% enhancement intensity**
