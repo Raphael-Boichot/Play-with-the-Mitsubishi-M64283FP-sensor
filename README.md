@@ -27,7 +27,7 @@ This sensor appears sporadically on Japanese online auction sites for random pri
 |  A3         | VOUT, analog signal from sensor        | uses regular GB camera ribbon |
 |  D4         | Some green LED, indicates exposure     | not mandatory but cool        |
 |  D5         | Some red LED, indicates serial transfer| not mandatory but cool        |
-|  D6         | STRB (image of CLOCK when VOUT active) | not used at all               |
+|  D6         | STRB (echo of CLOCK when VOUT active)  | not used at all               |
 |  D7         | TADD (default HIGH, extra regsisters)  | has to use an external wire   |
 |  D8         | READ (image ready to transfer)         | uses regular GB camera ribbon |
 |  D9         | CLOCK (self explanatory)               | uses regular GB camera ribbon |
