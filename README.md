@@ -38,6 +38,8 @@ This sensor appears sporadically on Japanese online auction sites for random pri
 |  GND        | GND                                    | uses regular GB camera ribbon |
 |  +5V        | +5V                                    | uses regular GB camera ribbon |
 
+The Arduino codes comprises an auto-exposure routine, so it may give something interesting at first try.
+
 ## Register setting, the comprehensive explanation
 
 Understanding the registers system for the first time is not trivial, knowing the sketchy documentation available. Despite everything, through trial and error, datalogging and a bit of educated guess (plus quite a lot of time), I think I overall understand how to drive them now.
@@ -155,7 +157,7 @@ Based on the English datasheet instructions (which are totally confusing, oh, I 
 **Myself in projection mode, x scale is time, y scale is vertical projected signal - this is not a screenshot from Earthbound**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
-As data are averaged on 128 pixels, the pick-to-valley signal is very weak in projection mode. You'd better have a good post-processing to extract something usefull from it.
+As data are averaged on 128 pixels, the pick-to-valley signal is very weak in projection mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure alogorithm.
 
 ## Showcase
 
