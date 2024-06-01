@@ -157,7 +157,7 @@ Based on the English datasheet instructions (which are totally confusing, oh, I 
 **Recommended registers setting to trigger projection mode according to me**
 ![](/Pictures%20and%20datasheets/Registers_setting_projection.png)
 
-**Myself in projection mode, x scale is time, y scale is vertical projected signal - this is not a screenshot from Earthbound**
+**Me projected in one dimension of space (y-axis) and one dimension of time (x-axis)**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
 As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure alogorithm.
