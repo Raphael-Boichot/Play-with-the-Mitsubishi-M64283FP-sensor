@@ -73,6 +73,10 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 - **Register I:** outputs the image in negative, but flips the whole voltage scale too.
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
+**Comparison of register E effect on the M64282FP and M64283FP**
+![](/Pictures%20and%20datasheets/Edge_comparison.png)
+
+Note: the edge enhancement cannot be set to less than 50% with the M64282FP, so only way to deactivate it is to put N, VH1 and VH0 to LOW. On the 83FP, E=0b0000 is enough to deactivate border enhancement.
 
 Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresponding addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image pixels are spit in reading order like a regular image, but with new dimensions. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
 
