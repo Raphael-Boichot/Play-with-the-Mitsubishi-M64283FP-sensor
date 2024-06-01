@@ -47,7 +47,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 
 **Address 010 and 011, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
-- **Register C:** Exposure time in 65535 (0xFFFF, 2x8 bits) increments of 16 µs. Maximal exposure is 1048 ms if the clock signal is set to 500 khz, recommend frequency. Downclocking is possible to increase exposure time but overcloking gives image with artifacts (top of the image becomes more and more dark with increasing frequency). Without image enhancement, 0x0010 is the minimal exposure recommended. With image enhancement, 0x0020 is the minimal exposure recommended (0x0030 for the M64283FP). Using values below these creates images with very strong artifacts. C = 0x0000 is forbidden.
+- **Register C:** Exposure time in 65535 (0xFFFF, 2x8 bits) increments of 16 µs. Maximal exposure is 1048 ms if the clock signal is set to 500 khz, recommended frequency. Downclocking is possible to increase exposure time but overcloking gives image with artifacts (top of the image becomes more and more dark with increasing frequency). Without image enhancement, 0x0010 is the minimal exposure recommended. With border enhancement, 0x0021 is the minimal exposure recommended (0x0030 for the M64282FP). Using values below these creates images with very strong artifacts. C = 0x0000 is a forbidden state.
 
 
 **Address 100, TADD HIGH** (The registers P3-P0 at this address have exactly the same effect with the M64282FP sensor. SH and AZ does not exist in the M64282FP sensor)
@@ -70,11 +70,11 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 **Address 111, TADD HIGH** (The registers at this address have similar, but not identical effect with the M64282FP sensor)
 - **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to cancel this effect is so to use register N**
-- **Register I:** outputs the image in negative, but messes the voltage range too.
+- **Register I:** outputs the image in negative, but flips the whole voltage scale too.
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
 
-Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresping addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image data are spit in reading order like a regular image, but with new dimensions. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
+Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresponding addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image pixels are spit in reading order like a regular image, but with new dimensions. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
 
 **Address 001, TADD LOW (optional registers)** (These registers do not exist in the M64282FP sensor)
 - **Register ST7-ST4:** start address in y for random adressing mode in 4 bits (range 0-15).
@@ -88,7 +88,7 @@ If ending address is lower that starting address, the whole register is set to 0
 If ending address is lower that starting address, the whole register is set to 0b00000000 (whole image capture).
 
 
-The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers in English. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
+The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers in English datasheet. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
 
 **Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_address.png)
@@ -99,11 +99,11 @@ Even if it doesn't appear so at first glance, this simple table clarifies all th
 
 Pushing the default Game Boy camera registers to a M64283FP is overall OK: auto-calibration is activated by default, VOUT is set to Vref in the dark (minus the drift), registers ST and END are not sent. The only noticable difference is the table of register E. While the default value in the Game Boy Camera is 0b000 (50% enhancement intensity with the M64282FP), it corresponds to 0% enhancement intensity with the M64283FP. So image appears very soft.
 
-The M64282FP has also masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if the sensor was dazzled in full light). I think nothing usefull can be deduced from this signal, I do not understand their purpose at first glance. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
+The M64282FP has also masked pixels lines (4 lines at the bottom of image) but they always return Vref + the saturation voltage (like if these pixels were dazzled in full light). I think nothing usefull can be deduced from this signal, I do not understand their purpose at first glance. On the other hand the masked pixels of the M64283FP really returns a usefull dark signal.
 
 Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom could perfectly handle the M64283FP with very minimal efforts (like shifting the register E table).
 
-**As The Arduino Uno is totally unable to drive the clock at 500 kHz, the device is very severely underclocked here and exposure is always too long by a factor of 4 at least. Images in full daylight are always white for this reason.**
+**As the default Arduino commands (digital read and write) are barely able to bitbang the clock at the recommended 500 kHz, the device is underclocked with the codes proposed here and exposure is always too long. Images in full daylight are generally overexposed for this reason.**
 
 ## The random access mode
 
@@ -138,7 +138,7 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
-The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes this issue. Surprisingly, the ESP32 produces [images with same kind of artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) due to its surprisingly unreliable and slow as shit ADC.
+The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes both issues. Surprisingly, the ESP32 ADC channels are very slow (not faster than the Arduino Uno) and I do not recommend porting the code to this platform.
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
