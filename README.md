@@ -137,7 +137,7 @@ Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom 
 
 The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). My own tests show that CL and OB = 1 are mandatory, not N, VH1, VH0 = 0.
 
-**Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
+**Recommended registers setting to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
 **Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
@@ -153,6 +153,9 @@ The dark halo on top of the image is due to timing inconsistencies when using th
 ## The projection mode
 
 Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I was not able to get intersting signal. So I've restarted from scratch : used registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and played with the two projection registers, it works. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
+
+**Recommended registers setting to trigger projection mode according to me**
+![](/Pictures%20and%20datasheets/Registers_setting_projection.png)
 
 **Myself in projection mode, x scale is time, y scale is vertical projected signal - this is not a screenshot from Earthbound**
 ![](/Pictures%20and%20datasheets/Projection.gif)
