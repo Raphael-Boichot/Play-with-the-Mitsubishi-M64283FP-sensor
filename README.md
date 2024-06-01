@@ -152,12 +152,12 @@ The dark halo on top of the image is due to timing inconsistencies when using th
 
 ## The projection mode
 
-Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I'm not able to get intersting signal. So I've restarted from scratch : use registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and play with the two projection registers. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
+Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I was not able to get intersting signal. So I've restarted from scratch : used registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and played with the two projection registers, it works. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
 
 **Myself in projection mode, x scale is time, y scale is vertical projected signal - this is not a screenshot from Earthbound**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
-As data are averaged on 128 pixels, the pick-to-valley signal is very weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure alogorithm.
+As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure alogorithm.
 
 ## Showcase
 
