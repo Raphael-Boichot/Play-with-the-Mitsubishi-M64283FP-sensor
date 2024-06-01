@@ -20,6 +20,22 @@ The M64283FP was probably available for world retail at a certain point as it ha
 
 This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained three units of the M64283FP in the summer 2023 from a generous donator who know someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me. I also gave one to a trusted member of the Game Boy retro community as obsessed as me with documenting this kind of unobtainable stuff.
 
+## Project pinout but you may use the [dedicated PCB](/PCB)
+
+| Arduino Pin |          M64286FP Sensor pin           |
+|-------------|----------------------------------------|
+|  A3         | VOUT, analog signal from sensor        |
+|  D4         | Some green LED, indicates exposure     |
+|  D5         | Some red LED, indicate data transfer   |
+|  D6         | STRB (unused, no need to connect       |
+|  D7         | TADD (default HIGH, extra regsisters)  |
+|  D8         | READ (image ready to transfer)         |
+|  D9         | CLOCK (self explanatory)               |
+|  D10        | RESET (self explanatory                |
+|  D11        | LOAD (enable register)                 |
+|  D12        | SIN (register channel)                 |
+|  D13        | START (exposure trigger)               |
+
 ## Register setting, the comprehensive explanation
 
 Understanding the registers system for the first time is not trivial, knowing the sketchy documentation available. Despite everything, through trial and error, datalogging and a bit of educated guess (plus quite a lot of time), I think I overall understand how to drive them now.
