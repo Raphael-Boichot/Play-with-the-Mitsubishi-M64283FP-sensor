@@ -132,7 +132,7 @@ The dark halo on top of the image is due to timing inconsistencies when using th
 
 ## The projection mode
 
-Based on the English datasheet instructions (which are totally confusing), I'm not able to get intersting signal. So I've restarted from scratch : use any working set of registers that is not random access mode, set CL and OB to HIGH and enjoy. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
+Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I'm not able to get intersting signal. So I've restarted from scratch : use any working set of registers that is not random access mode, set CL and OB to HIGH and enjoy. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
 
 **Myself in projection mode, x scale is time, yscale is y projected signal - this is not a screenshot from Earthbound**
 ![](/Pictures%20and%20datasheets/Projection.gif)
