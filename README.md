@@ -137,6 +137,8 @@ Based on the English datasheet instructions (which are totally confusing), I'm n
 **Myself in projection mode, x scale is time, yscale is y projected signal - this is not a screenshot from Earthbound**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
+As data are averaged on 128 pixels, the pick-to-valley signal is very weak in projection mode. You'd better have a good post-processing to extract something usefull from it.
+
 ## Showcase
 
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin. The project can also use the PCB proposed here.
