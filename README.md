@@ -20,21 +20,23 @@ The M64283FP was probably available for world retail at a certain point as it ha
 
 This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained three units of the M64283FP in the summer 2023 from a generous donator who know someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me. I also gave one to a trusted member of the Game Boy retro community as obsessed as me with documenting this kind of unobtainable stuff.
 
-## Project pinout but you may use the [dedicated PCB](/PCB)
+## Project pinout but you may use the [dedicated PCB](/PCB) and the [dedicated sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB)
 
-| Arduino Pin |          M64286FP Sensor pin           |
-|-------------|----------------------------------------|
-|  A3         | VOUT, analog signal from sensor        |
-|  D4         | Some green LED, indicates exposure     |
-|  D5         | Some red LED, indicate data transfer   |
-|  D6         | STRB (unused, no need to connect       |
-|  D7         | TADD (default HIGH, extra regsisters)  |
-|  D8         | READ (image ready to transfer)         |
-|  D9         | CLOCK (self explanatory)               |
-|  D10        | RESET (self explanatory                |
-|  D11        | LOAD (enable register)                 |
-|  D12        | SIN (register channel)                 |
-|  D13        | START (exposure trigger)               |
+| Arduino Pin |          M64283FP Sensor pin           |           Comment             |
+|-------------|----------------------------------------|-------------------------------|
+|  A3         | VOUT, analog signal from sensor        | uses regular GB camera ribbon |
+|  D4         | Some green LED, indicates exposure     | not mandatory                 |
+|  D5         | Some red LED, indicate data transfer   | not mandatory                 |
+|  D6         | STRB (image of CLOCK when VOUT active) | not used at all               |
+|  D7         | TADD (default HIGH, extra regsisters)  | has to use an external wire   |
+|  D8         | READ (image ready to transfer)         | uses regular GB camera ribbon |
+|  D9         | CLOCK (self explanatory)               | uses regular GB camera ribbon |
+|  D10        | RESET (self explanatory                | uses regular GB camera ribbon |
+|  D11        | LOAD (enable register)                 | uses regular GB camera ribbon |
+|  D12        | SIN (register channel)                 | uses regular GB camera ribbon |
+|  D13        | START (exposure trigger)               | uses regular GB camera ribbon |
+|  GND        | GND                                    | uses regular GB camera ribbon |
+|  +5V        | +5V                                    | uses regular GB camera ribbon |
 
 ## Register setting, the comprehensive explanation
 
@@ -169,7 +171,7 @@ The Game Boy Camera sensor board is compatible with the M64283FP but does not gi
 
 The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
 
-**The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
+**The setup used, Arduino Uno and [custom sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
