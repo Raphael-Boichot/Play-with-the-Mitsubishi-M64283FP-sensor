@@ -78,7 +78,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 The images clearly show the 4 lines of saturated pixels at the bottom of the M64282FP sensor (effective resolution is only 128x123 pixels). On the other hand, the M64283FP is a real 128x128 sensor. How to take advantage of the saturated pixel lines of the 82FP for anything usefull is unknwon to me. In case of edge enhancement, both sensors output images with artifacted edging.
 
-In similar conditions of indoor light, with adapted registers, the senors give remarkably similar images.
+**In similar conditions of indoor light, with adapted registers, the two sensors give remarkably similar images.**
 
 Next registers are pushed only if TADD is set LOW when activating the LOAD pin, if not they overwrite registers at the corresponding addresses. If these registers are set to 0b00000000, 0b00000000, the whole image is captured. TADD must be kept HIGH by default. The image is splitted in 16x16 tiles and you have to draw a rectangle into that. Analog image pixels are spit in reading order like a regular image, but with new dimensions. STRB pin repeats the CLOCK signal as long as data are available on pin VOUT but counting CLOCK cycles from READ rising front is enough to collect all pixels according to my own tests.
 
