@@ -20,7 +20,7 @@ The M64283FP was probably available for world retail at a certain point as it ha
 
 This sensor appears sporadically on Japanese online auction sites for random prices and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (which is a no go for me). I finally obtained three units of the M64283FP in the summer 2023 from a generous donator who know someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me. I also gave one to a trusted member of the Game Boy retro community as obsessed as me with documenting this kind of unobtainable stuff.
 
-## Project pinout but you may use the [dedicated PCB](/PCB) and the [dedicated sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB)
+## Project pinout but you may use the [dedicated PCB](/PCB) and [sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB)
 
 | Arduino Pin |          M64283FP Sensor pin           |           Comment             |
 |-------------|----------------------------------------|-------------------------------|
