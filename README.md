@@ -118,6 +118,16 @@ The English datasheet is totally confusing about how to activate the random acce
 **Recommended register settings to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
+**Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
+![](/Pictures%20and%20datasheets/Random_access.png)
+
+The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
+
+**96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
+![](/Pictures%20and%20datasheets/LaPochee.png)
+
+The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes both issues. I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) when attempting to port the code to ESP32 due to its slow ADC.
+
 ## The projection mode
 
 Based on the English datasheet instructions (which are totally confusing), I'm not able to get intersting signal. So I've restarted from scratch : use any working set of registers that is not random access mode, set CL and OB to HIGH and enjoy. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
@@ -138,16 +148,6 @@ The Game Boy Camera sensor board is compatible with the M64283FP but does not gi
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
 The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
-
-**Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
-![](/Pictures%20and%20datasheets/Random_access.png)
-
-The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
-
-**96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
-![](/Pictures%20and%20datasheets/LaPochee.png)
-
-The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes both issues. I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) when attempting to port the code to ESP32 due to its slow ADC.
 
 **The setup used, Arduino Uno and custom sensor board to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
