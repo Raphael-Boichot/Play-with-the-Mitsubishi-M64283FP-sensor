@@ -164,17 +164,17 @@ As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in t
 
 ## Showcase
 
-The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin. The project can also use the PCB proposed here.
+The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin
 
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
 ![](/Pictures%20and%20datasheets/Sensor_comparison.png)
 
-The Game Boy Camera sensor board is compatible with the M64283FP but does not give easy access to the TADD pin. The M64282FP itself is yellowish while the M64283FP is more grayish. I suspect a better light sensivity of the 83FP compared to the 82FP.
+The M64282FP itself is yellowish while the M64283FP is more grayish, they are easy to discriminate just on this criterion. I suspect a better light sensivity of the 83FP, in particular in IR, compared to the 82FP. It's just a feeling, not a scientific measurement.
 
 **Image taken without (left) and with (right) image enhancement at 50% intensity, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
-The effect of image enhancement is a little bit less aesthetic than with the M64282FP but does the job anyway.
+The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway.
 
 **The setup used, Arduino Uno and [custom sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
