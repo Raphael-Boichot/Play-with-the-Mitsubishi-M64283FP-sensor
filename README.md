@@ -1,7 +1,7 @@
 # Play with the Mitsubishi M64283FP sensor and Arduino Uno
 A set of codes to address the Mitsubishi M64283FP artificial retina with Arduino. These codes are [compatible with the M64282FP sensor](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) of the Game Boy Camera as well. Codes proposed here are just working concepts but they can easily be adapted to ESP32 or [Raspberry Pi Pico](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam), just follow the comments in code. The image decoder is a Matlab code but the text format output by the Arduino is simple enough to be interpreted in whatever langage able to eat the serial flux. The Matlab decoder may be ported to GNU Octave without much efforts.
 
-I've decided to use an Arduino Uno to avoid the hassle of using level shifters. Levels are all 5V here, ADC included, easy way to make tests without a mess of wires.
+I've decided to use an Arduino Uno to avoid the hassle of using level shifters. Levels are all 5V here, ADC included, easy way to make tests without a mess of wires. Pixel data are output in 8-bit hexadecimal ASCII text to the serial, which is slow but easy to grasp for human mind. You're free to output raw data and adapt your own decoder to go faster.
 
 **Prerequite:** a minimal knowledge of the Game Boy Camera sensor and what pin does what. You can refer to this [other project](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) to start.
 
