@@ -148,7 +148,11 @@ The random access to sensor surface increases very efficiently the frame rate, i
 **96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/LaPochee.png)
 
-The dark halo on top of the image is due to timing inconsistencies when using the Arduino Uno during image acquisition. Basically both the CLOCK and the ADC are too slow and the voltage drifts (image is red from bottom to top). Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes both issues. I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) when attempting to port the code to ESP32 due to its slow ADC.
+The dark halo on top of the image is probably due to timing inconsistencies when using the Arduino Uno during image acquisition. This dark halo is more or less present depending on the exposure registers. I did not find any clear pattern however.
+
+I suppose that the CLOCK and the ADC may be too slow with the Arduino. Using a device with a decently fast ADC like the Raspberry Pi Pico allows bitbanging the CLOCK at nearly 500kHz while converting VOUT, what fixes both issues.
+
+I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor/blob/main/ESP32_version_beta/Image_taken_with_ESP32.png) when attempting to port the code to ESP32 due to its slow ADC. 
 
 ## The projection mode
 
