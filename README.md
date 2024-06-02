@@ -91,7 +91,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 
 
 **Address 111, TADD HIGH** (The registers at this address have similar, but not identical effect with the M64282FP sensor)
-- **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. MSB is never used. **With the same registers, the M64282FP sensor goes from 50% to 500%. Only way to cancel this effect is so to set register N to 0**
+- **Register E3-E0:** intensity of edge enhancement, from 0% to 87.5%. MSB is never used. **With the same registers, the M64282FP sensor goes from 50% to 500%.
 - **Register I:** outputs the image in negative, but flips the whole voltage scale too.
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
