@@ -3,6 +3,8 @@ A set of codes to address the Mitsubishi M64283FP artificial retina with Arduino
 
 I've decided to use an Arduino Uno to avoid the hassle of using level shifters. Levels are all 5V here, ADC included, easy way to make tests without a mess of wires. Pixel data are output in 8-bit hexadecimal ASCII text to the serial, which is slow but easy to grasp for human mind. You're free to output raw data and adapt your own decoder to go faster.
 
+Complementary informations about the M64283FP/82FP sensor can be found in the [DashBoy Camera project page](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam?tab=readme-ov-file#some-random-informations-for-you-game-boy-camera-nerd-). The present project aims to be a knowledge repo for all the possible features of the sensor. Some of them are yet included in the DashBoy Camera core, some will stay in this repo for history as some advanced features of the  M64283FP are easier/faster to do in software in 2024.
+
 **Prerequite:** a minimal knowledge of the Game Boy Camera sensor and what pin does what. You can refer to this [other project](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) to start.
 
 ## Some history
