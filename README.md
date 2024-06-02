@@ -160,7 +160,7 @@ Based on the English datasheet instructions (which are totally confusing, oh, I 
 **Me projected in one dimension of space (y-axis) and one dimension of time (x-axis)**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
-As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure alogorithm.
+As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure algorithm implemented within the Arduino.
 
 ## Showcase
 
