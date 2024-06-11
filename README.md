@@ -195,6 +195,9 @@ The effect of image enhancement is a little bit less aesthetic (purely subjectiv
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
+**The PCB you can order to play with the sensor**
+![](/PCB/PCB.png)
+
 Final words: soldering/desoldering these sensors with such fragile front acrylic window is a bit stressful. I recommend covering the window with tape and working fast with a good soldering iron set at 300°C. For desoldering, carefully lift one side while heating all the pins on this side at once to detach them from the PCB. Adding extra fresh solder first very eases the process. Let cool down before dealing with the other side. Try not bending pins. No need for low temperature solder, just be quick. **No heat gun or the epoxy casing will delaminate from the sensor surface, ruining the optical properties.** For soldering, I recommend to gently push with the finger when soldering to ensure that optical plane is parallel to the PCB and drain as much heat as possible by thermal conduction. Do some pins to secure the sensor first, let cool down, continue with other pins, and so on.
 
 ## Acknowledgments
