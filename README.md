@@ -8,7 +8,7 @@ Complementary informations about the M64283FP sensor can be found in the [DashBo
 **Prerequite:** a minimal knowledge of the Game Boy Camera sensor and what pin does what. You can refer to this [other project](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) to start.
 
 ## Some history
-The documents used for this literature review about the artificial retina series can be found in [this repository](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam/tree/main/Docs%20and%20research/Bibliography). It contains all the relevant references I've found to date as is updated each time I find something new.
+The documents used for this literature review about the artificial retina series can be found in [this repository](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam/tree/main/Docs%20and%20research/Bibliography). It contains all the relevant references I've found to date.
 
 CMOS ([Complementary Metal-oxide Semiconductor](https://en.wikipedia.org/wiki/CMOS)) is a quite old technology used in microelectronics to produce logic gates and by extension, memories. By chance, these logic gates are more or less sensitive to visible light. The first commercial digital camera, the [Cromemco Cyclops](https://en.wikipedia.org/wiki/Cromemco_Cyclops) made in 1975, was created by hacking a MOS ram chip with a transparent window. The development of image sensors based on CMOS technology for commercial application however only began in the early 90s, in the US, driven by the [Jet Propulsion Laboratory in NASA](https://spinoff.nasa.gov/Spinoff2017/cg_1.html).
 
