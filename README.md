@@ -8,7 +8,7 @@ Complementary informations about the M64283FP sensor can be found in the [DashBo
 **Prerequite:** a minimal knowledge of the Game Boy Camera sensor and what pin does what. You can refer to this [other project](https://github.com/Raphael-Boichot/Play-with-the-Game-Boy-Camera-Mitsubishi-M64282FP-sensor) to start.
 
 ## A bit of history to set the context
-The documents used for this literature review about the artificial retina series can be found in [this repository](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam/tree/main/Docs%20and%20research/Bibliography). It contains most of the relevant references I've found to date.
+The documents used for this literature review about the artificial retina series can be found in [this repository](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam/tree/main/Docs%20and%20research/Bibliography). It contains most of the relevant references I've found to date. Technical details about how CMOS sensors work can be found in these excellent [lectures](https://isl.stanford.edu/~abbas/aeglect392b.php).
 
 The very first commercial "solid state camera", the [Cromemco Cyclops](https://en.wikipedia.org/wiki/Cromemco_Cyclops), was issued in 1975 equipped with a [32x32 pixels MOS image sensor](/Pictures%20and%20datasheets/Popular%20Electronics-1975-02.pdf) tinkered from a [1024 bits memory chip](http://wsudbrink.dyndns.org:8080/cyclops/index.html). The chip was retrofitted with a transparent window instead of its usual metal protecting lid to take advantage of the adverse effect of light on stored bits. Surprisingly, the concept was not really followed by any active development, despite being simple and fun.
 
