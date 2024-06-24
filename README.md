@@ -208,7 +208,7 @@ I did use here my janky prototyping board but it would be easier for you to [dir
 
 Final words: soldering/desoldering these sensors with such fragile front acrylic window is a bit stressful. I recommend covering the window with tape and working fast with a good soldering iron set at 300°C. For desoldering, carefully lift one side while heating all the pins on this side at once to detach them from the PCB. Adding extra fresh solder first very eases the process. Let cool down before dealing with the other side. Try not bending pins. No need for low temperature solder, just be quick. **No heat gun or the epoxy casing will delaminate from the sensor surface, ruining the optical properties.** For soldering, I recommend to gently push with the finger when soldering to ensure that optical plane is parallel to the PCB and drain as much heat as possible by thermal conduction. Do some pins to secure the sensor first, let cool down, continue with other pins, and so on.
 
-**The mandatory RGB picture attempt. The sensor very suffers from its fixed pattern noise**
+**The mandatory RGB picture attempt made with a [DashBoy Camera](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam) and the M64283FP sensor**
 ![](/Pictures%20and%20datasheets/RGB.png)
 
 ## Acknowledgments
