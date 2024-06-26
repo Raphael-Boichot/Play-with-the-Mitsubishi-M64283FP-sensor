@@ -185,7 +185,7 @@ Based on the English datasheet instructions (which are totally confusing, oh, I 
 **Me projected in one dimension of space (y-axis) and stretched in one dimension of time (x-axis). It does not hurt.**
 ![](/Pictures%20and%20datasheets/Projection.gif)
 
-As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure algorithm implemented within the Arduino. Sadly, this mode would have been more interseting with outputing just a vertical line of pixels without projection, to make slit scan photography...
+As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure algorithm implemented within the Arduino. Sadly, this mode would have been more interesting with outputing just a vertical line of pixels without projection, to make slit scan photography...
 
 ## Showcase
 
