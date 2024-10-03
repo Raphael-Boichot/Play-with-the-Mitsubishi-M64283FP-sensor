@@ -200,7 +200,7 @@ The M64282FP itself is yellowish while the M64283FP is more grayish, they are ea
 **Image taken without (left) and with (right) image enhancement at 50% intensity, Game Boy Camera plastic lens**
 ![](/Pictures%20and%20datasheets/Image_enhancement.png)
 
-The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway.
+The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway. It does not show vertical streaks like the M64282FP (in particular the early series).
 
 **The setup used, Arduino Uno and [custom sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to ease access to TADD pin**
 ![](/Pictures%20and%20datasheets/Setup.png)
