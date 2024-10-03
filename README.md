@@ -58,6 +58,7 @@ Early CMOS based sensors have some particular "image signatures". The use of a f
 
 The Arduino codes comprises an auto-exposure routine, so it may give something interesting at first try.
 
+
 **The PCB you can order to play with the sensor**
 ![](/PCB/PCB.png)
 
