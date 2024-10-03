@@ -120,7 +120,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 **Comparison of register E effect on the M64282FP and M64283FP, 128x128 pixels area captured**
 ![](/Pictures%20and%20datasheets/Edge_comparison.png)
 
-The images clearly show the 4 lines of saturated pixels at the bottom of the M64282FP sensor (effective resolution is only 128x123 pixels). On the other hand, the M64283FP is a real 128x128 sensor. How to take advantage of the saturated pixel lines of the 82FP for anything usefull is unknwon to me. In case of edge enhancement, both sensors output images with artifacted edging.
+The images clearly show the 4 lines of saturated pixels at the bottom of the M64282FP sensor (effective resolution is only 128x123 pixels). On the other hand, the M64283FP is a real 128x128 sensor. How to take advantage of the saturated pixel lines of the 82FP for anything usefull is unknown to me. In case of edge enhancement, both sensors output images with artifacted edging.
 
 **In similar conditions of indoor light, with adapted registers, the two sensors give remarkably similar images.** Do not mind the constrast difference between sensors, it is just due to my post-processing code.
 
