@@ -215,4 +215,4 @@ Final words: soldering/desoldering these sensors with such fragile front acrylic
 ## Acknowledgments
 
 - [Andreas Hahn](https://github.com/HerrZatacke) for the [M64283FP/82FP-compatible PCB](https://github.com/HerrZatacke/M64283FP-Camera-PCB). 
-- Razole for providing me some M64283FPs. I've done my homeworks now, Mr Razole.
+- Razole for providing me some M64283FPs. I've done my homeworks now, Mr Razole, I can disappear from social media.
