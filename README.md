@@ -67,7 +67,7 @@ The Arduino codes comprises an auto-exposure routine, so it may give something i
 Understanding the registers system for the first time is not trivial, knowing the sketchy documentation available. Despite everything, through trial and error, datalogging and a bit of educated guess (plus quite a lot of time), I think I overall understand how to drive them now.
 
 **Register mapping according to the English Datasheet of the M64283FP sensor**
-![](/Pictures%20and%20datasheets/Registers_address_2.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_address_2.png)
 
 The English datasheet gives the whole list of registers. Most of them have no practical use or must be kept at default value, so stay relaxed and focused. TADD is a sensor pin used to push registers at other address ranges, exclusive to the M64283FP. It is pulled HIGH by default, except for last two addresses, where it must be set LOW at precise moments. The equivalent pin called TSW on the M64282FP is pulled HIGH by default and has the following comment: _**NOTE: don't connect this pin**_, So _**of course I've tried to connect it**_, but without gaining any clear knowledge, the M64282FP sensor just goes crazy (but still alive after this). Don't try this at home kids.
 
@@ -78,7 +78,7 @@ Most of the registers acts the same with the Game Boy Camera, so these explanati
 - **Register O5-O0:** plus or minus voltage (in small increments, 32 steps of 32 mV) added to Vref given by register V. MSB gives the polarity (plus or minus) of the applied voltage. Its relevancy with the M64283FP sensor is debatable as this sensor can self calibrate. But it's there anyway. On the M64282FP, using O is the only way to fine tune Vref when it drifts with exposure time or between sensors.
 
 **Effect of registers Z, V and O translated from the original Japanese datasheet (Note that STRB and XCK are inverted, like if it was not yet confusing enough...)**
-![](/Pictures%20and%20datasheets/Bias_registers.png)
+![M64283FP](/Pictures%20and%20datasheets/Bias_registers.png)
 
 Even by translating the original datasheet, this is a bit confusing. What is depicted as VOffset is effect of register O for me, unless the two upper curves are from two different sensors. But you get the idea: always set Z1 to 1 and you'll get a dark signal approximately equal to voltage given by register V, called Vref. This Vref varies between sensors for a same set of registers, but also with exposure time. This variation/drift is called VOffset. VOffset can be cancelled automatically by putting register CL = 0 and OB = 0 with the M64283FP sensor. Vref itself is the sum of V (raw tuning) and O (fine tuning). On the M64282FP sensor, CL and OB registers do not exist, so the only way to cancel Voffset is to pre-calculate a lookup table of register O to apply for each sensor and each exposure time. This is basically what the [Game Boy Camera calibration procedure](https://github.com/Raphael-Boichot/Inject-pictures-in-your-Game-Boy-Camera-saves?tab=readme-ov-file#part-3-calibrating-the-sensor) does. So putting register CL = 1 and OB = 1 with the M64283FP sensor basically turns it into a M64282FP regarding Vref management.
 
@@ -88,7 +88,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 - **Registers G:** output gain, see tables in datasheet.
 
 **Effect of N, VH1 and VH0 at 87.5% enhancement intensity**
-![](/Pictures%20and%20datasheets/Enhancement.png)
+![M64283FP](/Pictures%20and%20datasheets/Enhancement.png)
 
 **Address 010 and 011, TADD HIGH** (The registers at this address have exactly the same effect with the M64282FP sensor)
 - **Register C:** Exposure time in 65535 (0xFFFF, 2x8 bits) increments of 16 µs. Maximal exposure is 1048 ms if the clock signal is set to 500 khz, recommended frequency. Downclocking is possible to increase exposure time but overcloking gives image with artifacts (top of the image becomes more and more dark with increasing frequency). Without image enhancement, 0x0010 is the minimal exposure recommended. With border enhancement, 0x0021 is the minimal exposure recommended (0x0030 for the M64282FP). Using values below these creates images with very strong artifacts. C = 0x0000 is a forbidden state.
@@ -118,7 +118,7 @@ Even by translating the original datasheet, this is a bit confusing. What is dep
 - **Registers V2-V0:** reference voltage of the sensor (Vref) from 0.5 to 3.5 Volts by increments of 0.5 Volts, cumulative with O. V = 0b000 is a forbidden state. The probable reason is that VOUT can easily go negative if Vref = 0 Volts, which means bye bye your precious ADC (or MAC-GBD).
 
 **Comparison of register E effect on the M64282FP and M64283FP, 128x128 pixels area captured**
-![](/Pictures%20and%20datasheets/Edge_comparison.png)
+![M64283FP](/Pictures%20and%20datasheets/Edge_comparison.png)
 
 The images clearly show the 4 lines of saturated pixels at the bottom of the M64282FP sensor (effective resolution is only 128x123 pixels). On the other hand, the M64283FP is a real 128x128 sensor. How to take advantage of the saturated pixel lines of the 82FP for anything usefull is unknown to me. In case of edge enhancement, both sensors output images with artifacted edging.
 
@@ -141,7 +141,7 @@ If ending address is lower that starting address, the whole register is set to 0
 The Japanese datatsheet also proposes a table of registers which must be let at their default values, which is VERY practical considering the confusing description of some registers in English datasheet. It typically recommends to let the obscure SH and AZ always at zero and to not try playing with custom kernels unless you know what you are doing (which is not my case).
 
 **Register mapping with recommended values according to the Japanese Datasheet of the M64283FP sensor**
-![](/Pictures%20and%20datasheets/Registers_address.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_address.png)
 
 Even if it doesn't appear so at first glance, this simple table clarifies all the issues raised by the poorly translated English datasheet. Obscure/unknown/ill documented registers are all set to zero !
 
@@ -160,15 +160,15 @@ Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom 
 The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). My own tests show that CL and OB = 1 are mandatory, not N, VH1, VH0 = 0.
 
 **Recommended registers setting to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
-![](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
 
 **Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
-![](/Pictures%20and%20datasheets/Random_access.png)
+![M64283FP](/Pictures%20and%20datasheets/Random_access.png)
 
 The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
 
 **96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
-![](/Pictures%20and%20datasheets/LaPochee.png)
+![M64283FP](/Pictures%20and%20datasheets/LaPochee.png)
 
 The dark halo on top of the image is probably due to timing inconsistencies when using the Arduino Uno during image acquisition. This dark halo is more or less present depending on the exposure registers. I did not find any clear pattern however.
 
@@ -181,10 +181,10 @@ I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-wit
 Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I was not able to get intersting signal. So I've restarted from scratch : used registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and played with the two projection registers, it works. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
 
 **Recommended registers setting to trigger projection mode according to me**
-![](/Pictures%20and%20datasheets/Registers_setting_projection.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_setting_projection.png)
 
 **Me projected in one dimension of space (y-axis) and stretched in one dimension of time (x-axis). It does not hurt.**
-![](/Pictures%20and%20datasheets/Projection.gif)
+![M64283FP](/Pictures%20and%20datasheets/Projection.gif)
 
 As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure algorithm implemented within the Arduino. Sadly, this mode would have been more interesting with outputing just a vertical line of pixels without projection, to make slit scan photography...
 
@@ -193,24 +193,24 @@ As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in t
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin
 
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
-![](/Pictures%20and%20datasheets/Sensor_comparison.png)
+![M64283FP](/Pictures%20and%20datasheets/Sensor_comparison.png)
 
 The M64282FP itself is yellowish while the M64283FP is more grayish, they are easy to discriminate just on this criterion. I suspect a better light sensivity of the 83FP, in particular in IR, compared to the 82FP. It's just a feeling, not a scientific measurement.
 
 **Image taken without (left) and with (right) image enhancement at 50% intensity, Game Boy Camera plastic lens**
-![](/Pictures%20and%20datasheets/Image_enhancement.png)
+![M64283FP](/Pictures%20and%20datasheets/Image_enhancement.png)
 
 The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway. It does not show vertical streaks like the M64282FP (in particular the early series).
 
 **The setup used, Arduino Uno and [custom sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to ease access to TADD pin**
-![](/Pictures%20and%20datasheets/Setup.png)
+![M64283FP](/Pictures%20and%20datasheets/Setup.png)
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
 Final words: soldering/desoldering these sensors with such fragile front acrylic window is a bit stressful. I recommend covering the window with tape and working fast with a good soldering iron set at 300°C. For desoldering, carefully lift one side while heating all the pins on this side at once to detach them from the PCB. Adding extra fresh solder first very eases the process. Let cool down before dealing with the other side. Try not bending pins. No need for low temperature solder, just be quick. **No heat gun or the epoxy casing will delaminate from the sensor surface, ruining the optical properties.** For soldering, I recommend to gently push with the finger when soldering to ensure that optical plane is parallel to the PCB and drain as much heat as possible by thermal conduction. Do some pins to secure the sensor first, let cool down, continue with other pins, and so on.
 
 **The mandatory RGB picture attempt made with a [DashBoy Camera](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam) and the M64283FP sensor**
-![](/Pictures%20and%20datasheets/RGB.png)
+![M64283FP](/Pictures%20and%20datasheets/RGB.png)
 
 ## Acknowledgments
 
