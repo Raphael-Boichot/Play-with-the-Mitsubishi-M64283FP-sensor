@@ -181,7 +181,7 @@ I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-wit
 
 Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I was not able to get intersting signal. So I've restarted from scratch : used registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and played with the two projection registers, it works. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
 
-**Recommended registers setting to trigger projection mode according to me**
+**Recommended registers setting to trigger projection mode according to my own reverse engineering**
 ![M64283FP](/Pictures%20and%20datasheets/Registers_setting_projection_M64283FP.png)
 
 **Me projected in one dimension of space (y-axis) and stretched in one dimension of time (x-axis). It does not hurt.**
