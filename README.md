@@ -169,7 +169,7 @@ The random access to sensor surface increases very efficiently the frame rate, i
 
 **96x96 pixels image, hardware cropped by random access mode, format of the [LaPochee module](https://time-space.kddi.com/ketaizukan/1999/11.html) on top of a full frame 128x128 pixels image, Game Boy Camera plastic lens**
 ![M64283FP](/Pictures%20and%20datasheets/LaPochee.png)
-(Funfact, the LaPochee in fact uses a software cropping on a full frame image...)
+(Funfact, the LaPochee in fact uses a software cropping on a full frame image according to the sensor connections, TADD is not connected)
 
 The dark halo on top of the image is probably due to timing inconsistencies when using the Arduino Uno during image acquisition. This dark halo is more or less present depending on the exposure registers. I did not find any clear pattern however.
 
