@@ -194,7 +194,7 @@ As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in t
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin
 
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
-![M64283FP](/Pictures%20and%20datasheets/Sensor_comparison_M64283FP.png)
+![M64283FP](/Pictures%20and%20datasheets/Sensor_comparison_M64282FP_vs_M64283FP.png)
 
 **M64283FP sensor mounted on a dedicated sensor PCB giving access to STRB and TADD pins**
 ![M64283FP](/Pictures%20and%20datasheets/Sensor_special_PCB_M64283FP.png)
