@@ -202,7 +202,7 @@ The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a c
 The M64282FP itself is yellowish while the M64283FP is more grayish, they are easy to discriminate just on this criterion. I suspect a better light sensivity of the 83FP, in particular in IR, compared to the 82FP. It's just a feeling, not a scientific measurement.
 
 **Image taken without (left) and with (right) image enhancement at 50% intensity, Game Boy Camera plastic lens**
-![M64283FP](/Pictures%20and%20datasheets/Image_enhancement.png)
+![M64283FP](/Pictures%20and%20datasheets/Image_enhancement_M64283FP.png)
 
 The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway. It does not show vertical streaks like the M64282FP (in particular the early series).
 
