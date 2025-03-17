@@ -38,9 +38,9 @@ The M64283FP was anyway probably available for world retail at a certain point a
 ## I'm a real nerd, where can I find one ?!
 This sensor appears sporadically on Japanese online auction sites for random prices (from "cheap for a complete tray in its original packaging" to "total scam for one loose unit") and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (so typically high on the scam side) nor to get a single proof that they have this sensor in stock for real (I mean at least a single image not stolen from elsewhere for example...). I finally obtained three units of the M64283FP in 2023 from a generous donator who know someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me.
 
-Other source is of course the quite elusive PDZ43 Lapochée camera module which appears sometimes on local auctions as electronic junk, for cheap. As the sensor is solid and electronic junk not that desirable in Japan compared to West, this can be a reliable source. I got one in 2025 like this. There was another unit on sale at the same time.
+Other source is of course the quite elusive PDZ43 Lapochée camera module which appears sometimes on local auctions as electronic junk, for cheap. As the sensor is solid and electronic junk not that desired in Japan compared to Western countries, this can be a reliable source. I got one in 2025 like this, for a hanfull of euros. There was at least another unit on sale at the same time on the same site (Mercari).
 
-In brief, to get some, be patient and very stubborn (and a bit lucky).
+In brief, to get some, be patient and very stubborn.
 
 Early CMOS based sensors have some particular "image signatures". The use of a fix amplifier assigned to each pixel creates images with a fixed-pattern noise, they cannot simultaneously transfer all the pixels of an image at once, which leads to image distorsion with moving objects (rolling shutter effect) and their dynamic range is rather poor compared to CCD sensors. Also, these sensors are not at all sensitive to dazzling. The images produced by the M64283FP have all of these signatures.
 
