@@ -38,7 +38,7 @@ The M64283FP was anyway probably available for world retail at a certain point a
 ## I'm a real nerd, where can I find one ?!
 This sensor appears sporadically on Japanese online auction sites for random prices (from "cheap for a complete tray in its original packaging" to "total scam for one loose unit") and some Chinese chip dealers claim to have some, but I've never managed to bargain one for less than 60€ (so typically high on the scam side) nor to get a single proof that they have this sensor in stock for real (I mean at least a single image not stolen from elsewhere for example...). I finally obtained three units of the M64283FP in 2023 from a generous donator who know someone who knew someone at Mitsubishi, knowing that these sensors will have a good second home with me.
 
-Other source is of course the quite elusive PDZ43 Lapochée camera module which appears sometimes on local auctions as electronic junk, for cheap. As the sensor is solid and electronic junk not that desirable in Japan compared to West, this can be a reliable source. I got one in 2025 like this.
+Other source is of course the quite elusive PDZ43 Lapochée camera module which appears sometimes on local auctions as electronic junk, for cheap. As the sensor is solid and electronic junk not that desirable in Japan compared to West, this can be a reliable source. I got one in 2025 like this. There was another unit on sale at the same time.
 
 In brief, to get some, be patient and very stubborn (and a bit lucky).
 
