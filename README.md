@@ -160,10 +160,10 @@ Overall, both sensors are remarquably compatibles. A custom Game Boy Camera rom 
 The English datasheet is totally confusing about how to activate the random access mode while the Japanese one if perfectly clear: all image enhancement features must be deactivated: both auto-calibration and convolution kernels (N, VH1, VH0 = 0, CL, OB = 1). My own tests show that CL and OB = 1 are mandatory, not N, VH1, VH0 = 0.
 
 **Recommended registers setting to trigger random access mode according to the Japanese Datasheet of the M64283FP sensor**
-![M64283FP](/Pictures%20and%20datasheets/Registers_setting_random_access.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_setting_random_access_M64283FP.png)
 
 **Image taken strip by strip (32x128 pixels) with random access mode, Game Boy Camera plastic lens**
-![M64283FP](/Pictures%20and%20datasheets/Random_access.png)
+![M64283FP](/Pictures%20and%20datasheets/Random_access_M64283FP.png)
 
 The random access to sensor surface increases very efficiently the frame rate, in particular with the sluggish Arduino Uno.
 
@@ -182,10 +182,10 @@ I have observed the [same artifacts](https://github.com/Raphael-Boichot/Play-wit
 Based on the English datasheet instructions (which are totally confusing, oh, I yet said that), I was not able to get intersting signal. So I've restarted from scratch : used registers similar to random access mode, CL = 1, OB = 1 , N = 0, VH1 = 0 and VH0 = 0 and played with the two projection registers, it works. Let TADD always HIGH. This mode is particularly fast, it can theoretically reach about 4000 "f"ps.
 
 **Recommended registers setting to trigger projection mode according to me**
-![M64283FP](/Pictures%20and%20datasheets/Registers_setting_projection.png)
+![M64283FP](/Pictures%20and%20datasheets/Registers_setting_projection_M64283FP.png)
 
 **Me projected in one dimension of space (y-axis) and stretched in one dimension of time (x-axis). It does not hurt.**
-![M64283FP](/Pictures%20and%20datasheets/Projection.gif)
+![M64283FP](/Pictures%20and%20datasheets/Projection_M64283FP.gif)
 
 As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in this mode. You'd better have a good post-processing to extract something usefull from it. Vertical artifacts are due to the autoexposure algorithm implemented within the Arduino. Sadly, this mode would have been more interesting with outputing just a vertical line of pixels without projection, to make slit scan photography...
 
@@ -194,10 +194,10 @@ As data are averaged on 128 pixels, the pick-to-valley signal is quite weak in t
 The M64283FP can be dropped to the Game Boy Camera sensor PCB and works like a charm (except for register E table inconsistency) in a Game Boy Camera. It is anyway recommended to solder this sensor on a [custom PCB giving easy access](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to the TADD pin
 
 **M64282FP sensor (left) and M64283FP sensor (right) mounted on a Game Boy Camera sensor PCB**
-![M64283FP](/Pictures%20and%20datasheets/Sensor_comparison.png)
+![M64283FP](/Pictures%20and%20datasheets/Sensor_comparison_M64283FP.png)
 
 **M64283FP sensor mounted on a dedicated sensor PCB giving access to STRB and TADD pins**
-![M64283FP](/Pictures%20and%20datasheets/Sensor_special_PCB.png)
+![M64283FP](/Pictures%20and%20datasheets/Sensor_special_PCB_M64283FP.png)
 
 The M64282FP itself is yellowish while the M64283FP is more grayish, they are easy to discriminate just on this criterion. I suspect a better light sensivity of the 83FP, in particular in IR, compared to the 82FP. It's just a feeling, not a scientific measurement.
 
@@ -207,14 +207,14 @@ The M64282FP itself is yellowish while the M64283FP is more grayish, they are ea
 The effect of image enhancement is a little bit less aesthetic (purely subjective observation) than with the M64282FP but does the job anyway. It does not show vertical streaks like the M64282FP (in particular the early series).
 
 **The setup used, Arduino Uno and [custom sensor board](https://github.com/HerrZatacke/M64283FP-Camera-PCB) to ease access to TADD pin**
-![M64283FP](/Pictures%20and%20datasheets/Setup.png)
+![M64283FP](/Pictures%20and%20datasheets/Setup_M64283FP.png)
 
 I did use here my janky prototyping board but it would be easier for you to [directly order the custom PCB](/PCB).
 
 Final words: soldering/desoldering these sensors with such fragile front acrylic window is a bit stressful. I recommend covering the window with tape and working fast with a good soldering iron set at 300°C. For desoldering, carefully lift one side while heating all the pins on this side at once to detach them from the PCB. Adding extra fresh solder first very eases the process. Let cool down before dealing with the other side. Try not bending pins. No need for low temperature solder, just be quick. **No heat gun or the epoxy casing will delaminate from the sensor surface, ruining the optical properties.** For soldering, I recommend to gently push with the finger when soldering to ensure that optical plane is parallel to the PCB and drain as much heat as possible by thermal conduction. Do some pins to secure the sensor first, let cool down, continue with other pins, and so on.
 
 **The mandatory RGB picture attempt made with a [DashBoy Camera](https://github.com/Raphael-Boichot/Mitsubishi-M64282FP-dashcam) and the M64283FP sensor**
-![M64283FP](/Pictures%20and%20datasheets/RGB.png)
+![M64283FP](/Pictures%20and%20datasheets/RGB_M64283FP.png)
 
 ## Acknowledgments
 
